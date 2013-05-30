@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="IISDeployment.Data.Model.Environment">
+    <Position X="0.5" Y="2.75" Width="2.25" />
+    <AssociationLine Name="Product" Type="IISDeployment.Data.Model.Product" FixedFromPoint="true">
+      <Path>
+        <Point X="0.875" Y="2.75" />
+        <Point X="0.875" Y="1.733" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.307" Y="0.602" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Servers" Type="IISDeployment.Data.Model.Server" FixedToPoint="true">
+      <Path>
+        <Point X="0.812" Y="3.983" />
+        <Point X="0.812" Y="5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.067" Y="0.3" Height="0.182" Width="1.54" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAABgAAAAAAAA=</HashCode>
+      <FileName>Environment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Stage" />
+      <Property Name="Product" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Servers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="IISDeployment.Data.Model.Server">
+    <Position X="0.5" Y="5" Width="2.25" />
+    <AssociationLine Name="Environment" Type="IISDeployment.Data.Model.Environment" FixedFromPoint="true">
+      <Path>
+        <Point X="2.5" Y="5" />
+        <Point X="2.5" Y="3.983" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.463" Y="0.32" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Environment" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ServerRoles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="IISDeployment.Data.Model.Website">
+    <Position X="6.75" Y="4.25" Width="3.5" />
+    <AssociationLine Name="ApplicationPool" Type="IISDeployment.Data.Model.ApplicationPool">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.546" Y="0.279" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Bindings" Type="IISDeployment.Data.Model.Binding">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.953" Y="0.414" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="VirtualDirectories" Type="IISDeployment.Data.Model.VirtualDirectory">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.317" Y="0.81" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAQAAEAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Website.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ApplicationPool" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Bindings" />
+      <Property Name="VirtualDirectories" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="IISDeployment.Data.Model.ApplicationPool">
+    <Position X="5.75" Y="7.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAQAgAAAAAAAAAAAAACREAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>ApplicationPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IISDeployment.Data.Model.VirtualDirectory">
+    <Position X="8.5" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VirtualDirectory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IISDeployment.Data.Model.Binding">
+    <Position X="10.75" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAABACAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Binding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IISDeployment.Data.Model.Product">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <AssociationLine Name="Environments" Type="IISDeployment.Data.Model.Environment" FixedFromPoint="true">
+      <Path>
+        <Point X="2.562" Y="1.733" />
+        <Point X="2.562" Y="2.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.119" Y="0.425" Height="0.182" Width="2.26" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Packages" Type="IISDeployment.Data.Model.Package" FixedFromPoint="true">
+      <Path>
+        <Point X="3.5" Y="1.562" />
+        <Point X="6.75" Y="1.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Environments" />
+      <Property Name="Packages" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="IISDeployment.Data.Model.Package">
+    <Position X="6.75" Y="0.5" Width="2" />
+    <AssociationLine Name="SetupSteps" Type="IISDeployment.Data.Model.SetupStep" FixedFromPoint="true">
+      <Path>
+        <Point X="8.75" Y="0.875" />
+        <Point X="11.5" Y="0.875" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAACAIAAAAAAIAAAQAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Package.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="SetupSteps" />
+      <Property Name="Websites" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="IISDeployment.Data.Model.SetupStep">
+    <Position X="11.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAQAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SetupStep.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Package" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="IISDeployment.Data.Model.ServerRole">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>ServerRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="IISDeployment.Data.Model.Stage">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAgAAAAAAABAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Stage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

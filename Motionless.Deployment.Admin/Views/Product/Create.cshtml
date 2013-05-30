@@ -1,0 +1,13 @@
+﻿@model IISDeployment.Data.Model.Product
+@{
+	ViewBag.Title = "Create Product";
+}
+@using (Html.BeginForm("Create","Product",FormMethod.Post,new {@class = "form-horizontal"})) {
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	@Html.EditorForModel()
+}
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>

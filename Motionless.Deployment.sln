@@ -1,0 +1,75 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Data.Persistence", "Motionless.Data.Persistence\Motionless.Data.Persistence.csproj", "{C9CA3D6B-F27D-40E8-AE43-ED8607597553}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C9789FB6-18B6-4F26-88EF-63F0F2CCFBD4}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Data.Persistence.Test", "Motionless.Data.Persistence.Test\Motionless.Data.Persistence.Test.csproj", "{E9E1B464-B926-4305-8274-D63B833890EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Deployment.Service", "Motionless.Deployment.Service\Motionless.Deployment.Service.csproj", "{C44A99D8-1FB1-4328-A3CE-882AB9C2EB26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Deployment.Admin", "Motionless.Deployment.Admin\Motionless.Deployment.Admin.csproj", "{1DDF3EC9-1F24-4B64-AE44-99EA3D0F05EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Deployment.Admin.Tests", "Motionless.Deployment.Admin.Tests\Motionless.Deployment.Admin.Tests.csproj", "{54F93917-7241-4D8A-BCCB-F68262BA17F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Deployment.Configuration", "Motionless.Deployment.Configuration\Motionless.Deployment.Configuration.csproj", "{E45B895F-07B6-47F0-9715-46E5FD22A0BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Deployment.Configuration.Test", "Motionless.Deployment.Configuration.Test\Motionless.Deployment.Configuration.Test.csproj", "{50D3F72B-06F3-4C34-86C1-7C7D2D030EF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Deployment.Data.Model", "Motionless.Deployment.Data.Model\Motionless.Deployment.Data.Model.csproj", "{1BE96E16-6F42-4C47-9C27-39B9B57E43E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Deployment.Data.Model.Test", "Motionless.Deployment.Data.Model.Test\Motionless.Deployment.Data.Model.Test.csproj", "{34B9797F-7B6F-42C1-8F08-A7022AD9552C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9CA3D6B-F27D-40E8-AE43-ED8607597553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CA3D6B-F27D-40E8-AE43-ED8607597553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CA3D6B-F27D-40E8-AE43-ED8607597553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CA3D6B-F27D-40E8-AE43-ED8607597553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9E1B464-B926-4305-8274-D63B833890EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9E1B464-B926-4305-8274-D63B833890EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9E1B464-B926-4305-8274-D63B833890EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9E1B464-B926-4305-8274-D63B833890EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44A99D8-1FB1-4328-A3CE-882AB9C2EB26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44A99D8-1FB1-4328-A3CE-882AB9C2EB26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44A99D8-1FB1-4328-A3CE-882AB9C2EB26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44A99D8-1FB1-4328-A3CE-882AB9C2EB26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DDF3EC9-1F24-4B64-AE44-99EA3D0F05EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DDF3EC9-1F24-4B64-AE44-99EA3D0F05EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DDF3EC9-1F24-4B64-AE44-99EA3D0F05EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DDF3EC9-1F24-4B64-AE44-99EA3D0F05EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54F93917-7241-4D8A-BCCB-F68262BA17F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F93917-7241-4D8A-BCCB-F68262BA17F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F93917-7241-4D8A-BCCB-F68262BA17F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F93917-7241-4D8A-BCCB-F68262BA17F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45B895F-07B6-47F0-9715-46E5FD22A0BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45B895F-07B6-47F0-9715-46E5FD22A0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45B895F-07B6-47F0-9715-46E5FD22A0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45B895F-07B6-47F0-9715-46E5FD22A0BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50D3F72B-06F3-4C34-86C1-7C7D2D030EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50D3F72B-06F3-4C34-86C1-7C7D2D030EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50D3F72B-06F3-4C34-86C1-7C7D2D030EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50D3F72B-06F3-4C34-86C1-7C7D2D030EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BE96E16-6F42-4C47-9C27-39B9B57E43E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BE96E16-6F42-4C47-9C27-39B9B57E43E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BE96E16-6F42-4C47-9C27-39B9B57E43E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BE96E16-6F42-4C47-9C27-39B9B57E43E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34B9797F-7B6F-42C1-8F08-A7022AD9552C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34B9797F-7B6F-42C1-8F08-A7022AD9552C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34B9797F-7B6F-42C1-8F08-A7022AD9552C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34B9797F-7B6F-42C1-8F08-A7022AD9552C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

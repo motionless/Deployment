@@ -1,0 +1,32 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	
+	@Styles.Render("~/Content/bootstrap")
+</head>
+	<body>
+		<div id="wrap">
+			<!-- Fixed navbar -->
+			@Html.Partial("_Menu")
+
+			<!-- Begin page content -->
+			<div class="container">
+				@RenderBody()
+				<div id="push"></div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="container">
+				<p class="muted credit">Created by Motionless.</p>
+			</div>
+		</div>
+	</body>
+	<footer>
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+	</footer>
+</html>

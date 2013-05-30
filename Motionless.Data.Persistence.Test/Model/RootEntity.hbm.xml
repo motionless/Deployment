@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Motionless.Data.Persistence.Test.Model" assembly="Motionless.Data.Persistence.Test">
+	<class name="RootEntity" table="RootEntity" lazy="true">
+		<id name="Id" column="Id" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="IsDeleted">
+			<column name="IsDeleted" sql-type="bit" not-null="false" />
+		</property>
+		<property name="CreatedAt">
+			<column name="CreatedAt" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="UpdatedAt">
+			<column name="UpdatedAt" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="Name">
+			<column name="Name" sql-type="varchar" not-null="false" />
+		</property>
+		<set name="Children" inverse="true" cascade="none">
+			<key column="ID_RootEntity" />
+			<one-to-many class="Motionless.Data.Persistence.Test.Model.ChildEntity" />
+		</set>
+	</class>
+</hibernate-mapping>
