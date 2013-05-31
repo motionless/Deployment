@@ -8,7 +8,7 @@ namespace Motionless.Deployment.Data.Model
 
 		public virtual string ManagedRuntimeVersion { get; set; }
 
-		public virtual string PoolIdentity { get; set; }
+		public virtual string Identity { get; set; }
 
 		public virtual string IdentityPassword { get; set; }
 

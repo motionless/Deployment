@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Motionless.Data.Persistence;
 using Motionless.Deployment.Data.Model;
 using PagedList;
@@ -93,9 +94,11 @@ namespace Motionless.Deployment.Admin.Controllers
 		//
 		// GET: /Product/Delete/5
 
-		public ActionResult Delete(int id)
+		public ActionResult Delete(int id, int? page)
 		{
-			return View();
+			var product = Product.Queryable.Where(p => p.Id == id).FirstOrDefault();
+			product.Delete();
+			return this.Index(page);
 		}
 
 		//

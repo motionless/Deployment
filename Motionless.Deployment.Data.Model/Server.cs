@@ -8,8 +8,7 @@ namespace Motionless.Deployment.Data.Model
 		
 		public virtual Iesi.Collections.Generic.ISet<ServerRole> ServerRoles { get; set; }
 
-		public virtual Environment Environment { get; set; }
-
+		public virtual Iesi.Collections.Generic.ISet<Environment> Environments { get; set; }
 
 	}
 }

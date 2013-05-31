@@ -1,6 +1,9 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+
+using Motionless.Data.Persistence;
 using Motionless.Deployment.Admin.App_Start;
 
 namespace Motionless.Deployment.Admin
@@ -16,6 +19,13 @@ namespace Motionless.Deployment.Admin
 			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
+			
+			PersistenceHelper.UpdateDatabaseSchema();
+		}
+
+		protected void Application_Error(Object sender, System.EventArgs e)
+		{
+			PersistenceHelper.ForceDispose();
 		}
 	}
 }

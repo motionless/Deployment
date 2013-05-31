@@ -21,6 +21,11 @@ namespace Motionless.Data.Persistence
 			PersistenceHelper.SessionFactory.GetCurrentSession().Update(baseObject);
 		}
 
+		public static void Delete<T>(this BaseObject<T> baseObject) where T : BaseObject<T>
+		{
+			PersistenceHelper.SessionFactory.GetCurrentSession().Delete(baseObject);
+		}
+
 		public static void Merge<T>(this BaseObject<T> baseObject) where T : BaseObject<T>
 		{
 			PersistenceHelper.SessionFactory.GetCurrentSession().Merge(baseObject);

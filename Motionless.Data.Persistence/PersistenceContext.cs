@@ -93,6 +93,11 @@ namespace Motionless.Data.Persistence
 			}
 		}
 
+		internal void ForceDispose()
+		{
+			Commits.Add(false);
+			this.InternalDispose();
+		}
 
 		private void InternalDispose()
 		{

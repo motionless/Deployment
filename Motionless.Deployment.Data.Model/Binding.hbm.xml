@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
-				   namespace="IISDeployment.Data.Model" 
-				   assembly="IISDeployment.Data.Model">
+				   namespace="Motionless.Deployment.Data.Model" 
+				   assembly="Motionless.Deployment.Data.Model">
 	<class name="Binding" table="Binding" lazy="true">
 		<id name="Id" column="Id" type="long">
 			<generator class="identity" />

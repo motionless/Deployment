@@ -59,7 +59,7 @@ namespace Motionless.Data.Persistence
 		{
 			var updater = new SchemaUpdate(NhibernateConfiguration);
 			
-			updater.Execute(true,false);
+			updater.Execute(true,true);
 		}
 
 		public static void CreateDatabaseSchema()
@@ -100,6 +100,13 @@ namespace Motionless.Data.Persistence
 		{
 			return CreatePersistenceContext(false);
 		}
+
+
+		public static void ForceDispose()
+		{
+			PersistenceContextStack.Peek().ForceDispose();
+		}
+
 
 		/// <summary>
 		/// Creates the persistence context.

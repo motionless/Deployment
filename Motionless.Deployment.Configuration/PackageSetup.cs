@@ -17,7 +17,7 @@ namespace Motionless.Deployment.Configuration
 		/// <param name="package">The package.</param>
 		/// <returns></returns>
 		/// <exception cref="System.ArgumentNullException">package</exception>
-		public bool InstallNewPackage(Package package)
+		public bool InstallPackage(Package package)
 		{
 			if (package == null) throw new ArgumentNullException("package");
 
@@ -69,6 +69,7 @@ namespace Motionless.Deployment.Configuration
 					serverManager.Sites.Add(website.Name, website.PhysicalPath,0);
 				}
 				serverManager.CommitChanges();
+				existingSite.Start();
 				return true;
 			}
 		}
@@ -88,8 +89,15 @@ namespace Motionless.Deployment.Configuration
 				existingPool.ManagedRuntimeVersion = applicationPool.ManagedRuntimeVersion;
 				existingPool.AutoStart = true;
 				existingPool.Enable32BitAppOnWin64 = applicationPool.Enable32BitAppOnWin64;
+				
+				
 				existingPool.ProcessModel.IdleTimeout = new TimeSpan(0, 0, applicationPool.IdleTimeout);
-
+				ProcessModelIdentityType identityType;
+				if (ProcessModelIdentityType.TryParse(applicationPool.Identity, true, out identityType))
+				{
+					existingPool.ProcessModel.IdentityType = identityType;
+				}
+				
 				serverManager.CommitChanges();
 			}
 		}
@@ -131,13 +139,24 @@ namespace Motionless.Deployment.Configuration
 							                                                    binding.Hostname), binding.Protocol);
 							if (!string.IsNullOrWhiteSpace(binding.SslThumbPrint))
 							{
-								newBinding.CertificateHash = System.Text.Encoding.ASCII.GetBytes(binding.SslThumbPrint);
+								newBinding.CertificateHash = StringToByteArray(binding.SslThumbPrint);
 							}
 						}
 					}
 				}
 				serverManager.CommitChanges();
 			}
+		}
+
+		private static byte[] StringToByteArray(String hex)
+		{
+			int numberChars = hex.Length;
+			var bytes = new byte[numberChars / 2];
+			for (int i = 0; i < numberChars; i += 2)
+			{
+				bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+			}
+			return bytes;
 		}
 	}
 }

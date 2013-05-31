@@ -21,7 +21,7 @@ namespace Motionless.Deployment.Configuration.Test
 							                                MaxProcesses = 1,
 							                                Name = "Test Application Pool",
 							                                PeriodicRestartTime = 0,
-							                                PoolIdentity = "NetworkService"
+							                                Identity = "NetworkService"
 						                                }
 				              };
 			website.Bindings.Add(new Binding()
@@ -36,14 +36,15 @@ namespace Motionless.Deployment.Configuration.Test
 					                     Hostname = "www.keine-ahnung.de",
 					                     Port = 443,
 					                     Protocol = "https",
-					                     Website = website
+					                     Website = website,
+										 SslThumbPrint = "8AFB1487462DEF7EB64FCEB5F57478E30FFD105D"
 				                     });
 
 			var package = new Package();
 			package.Websites.Add(website);
 
 			var setup = new PackageSetup();
-			setup.InstallNewPackage(package);
+			setup.InstallPackage(package);
 
 		}
 	}

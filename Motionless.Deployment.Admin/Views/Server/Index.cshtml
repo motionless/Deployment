@@ -1,0 +1,31 @@
+﻿@using Motionless.Deployment.Data.Model
+@using PagedList
+@using PagedList.Mvc
+@{
+	ViewBag.Title = "Server List";
+}
+
+<h2>List of Server</h2>
+
+<table class="table table-striped">
+	<thead>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Created At</th>
+	    <th>Updated At</th>
+        <th>Edit</th>
+	</thead>
+	@foreach (Server product in ViewBag.Servers)
+ {
+		<tr>
+			<td>@product.Id</td>
+			<td>@product.Name</td>
+			<td>@product.CreatedAt</td>
+		    <td>@product.UpdatedAt</td>
+            <td>@Html.ActionLink("Edit","Edit",null,new {@class="btn"})</td>
+		</tr>
+ }
+</table>
+
+<!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+@Html.PagedListPager((IPagedList)ViewBag.Servers, page => Url.Action("Index", new { page }))

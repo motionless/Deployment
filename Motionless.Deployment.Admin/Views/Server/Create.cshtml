@@ -1,0 +1,13 @@
+﻿@model Motionless.Deployment.Data.Model.Server
+@{
+	ViewBag.Title = "Create Server";
+}
+@using (Html.BeginForm("Create","Server",FormMethod.Post,new {@class = "form-horizontal"})) {
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	@Html.EditorForModel()
+}
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>
