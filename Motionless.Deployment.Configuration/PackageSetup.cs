@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Web.Administration;
 using Motionless.Deployment.Data.Model;
+using ApplicationPool = Motionless.Deployment.Data.Model.ApplicationPool;
+using Binding = Motionless.Deployment.Data.Model.Binding;
 
 namespace Motionless.Deployment.Configuration
 {
@@ -56,10 +59,18 @@ namespace Motionless.Deployment.Configuration
 		/// </summary>
 		/// <param name="website">The website.</param>
 		/// <returns></returns>
-		public bool CreateOrUpdateWebsite(Data.Model.Website website)
+		private bool CreateOrUpdateWebsite(Data.Model.Website website)
 		{
-
-			return false;
+			using (var serverManager = new ServerManager())
+			{
+				var existingSite = serverManager.Sites.FirstOrDefault(site => site.Name == website.Name);
+				if (existingSite == null)
+				{
+					serverManager.Sites.Add(website.Name, website.PhysicalPath,0);
+				}
+				serverManager.CommitChanges();
+				return true;
+			}
 		}
 
 		/// <summary>
@@ -67,9 +78,20 @@ namespace Motionless.Deployment.Configuration
 		/// </summary>
 		/// <param name="applicationPool">The application pool.</param>
 		/// <returns></returns>
-		public bool CreateOrUpdateApplicationPool(ApplicationPool applicationPool)
+		private void CreateOrUpdateApplicationPool(ApplicationPool applicationPool)
 		{
-			return false;
+			using (var serverManager = new ServerManager())
+			{
+				var existingPool = serverManager.ApplicationPools.FirstOrDefault(pool => pool.Name == applicationPool.Name) ??
+				                   serverManager.ApplicationPools.Add(applicationPool.Name);
+
+				existingPool.ManagedRuntimeVersion = applicationPool.ManagedRuntimeVersion;
+				existingPool.AutoStart = true;
+				existingPool.Enable32BitAppOnWin64 = applicationPool.Enable32BitAppOnWin64;
+				existingPool.ProcessModel.IdleTimeout = new TimeSpan(0, 0, applicationPool.IdleTimeout);
+
+				serverManager.CommitChanges();
+			}
 		}
 
 		/// <summary>
@@ -77,9 +99,9 @@ namespace Motionless.Deployment.Configuration
 		/// </summary>
 		/// <param name="virtualDirectory">The virtual directory.</param>
 		/// <returns></returns>
-		public bool CreateOrUpdateVirtualDirectory(Data.Model.VirtualDirectory virtualDirectory)
+		public void CreateOrUpdateVirtualDirectory(Data.Model.VirtualDirectory virtualDirectory)
 		{
-			return false;
+			
 		}
 
 		/// <summary>
@@ -87,9 +109,35 @@ namespace Motionless.Deployment.Configuration
 		/// </summary>
 		/// <param name="bindings">The bindings.</param>
 		/// <returns></returns>
-		public bool CreateOrUpdateBindings(IEnumerable<Data.Model.Binding> bindings)
+		public void CreateOrUpdateBindings(IEnumerable<Data.Model.Binding> bindings)
 		{
-			return false;
+			using (var serverManager = new ServerManager())
+			{
+				if (bindings != null)
+				{
+					Binding firstBinding = bindings.FirstOrDefault();
+					var website = serverManager.Sites.FirstOrDefault(site => firstBinding != null && site.Name == firstBinding.Website.Name);
+					if (website != null)
+					{
+						website.Bindings.Clear();
+
+						foreach (var binding in bindings)
+						{
+							var newBinding = website.Bindings.Add(string.Format("{0}:{1}:{2}",
+							                                                    string.IsNullOrWhiteSpace(binding.IPAddress)
+								                                                    ? "*"
+								                                                    : binding.IPAddress,
+							                                                    binding.Port,
+							                                                    binding.Hostname), binding.Protocol);
+							if (!string.IsNullOrWhiteSpace(binding.SslThumbPrint))
+							{
+								newBinding.CertificateHash = System.Text.Encoding.ASCII.GetBytes(binding.SslThumbPrint);
+							}
+						}
+					}
+				}
+				serverManager.CommitChanges();
+			}
 		}
 	}
 }

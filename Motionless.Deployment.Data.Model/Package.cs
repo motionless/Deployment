@@ -1,10 +1,17 @@
-﻿using Motionless.Data.Persistence;
+﻿using Iesi.Collections.Generic;
+using Motionless.Data.Persistence;
 using System;
 
 namespace Motionless.Deployment.Data.Model
 {
 	public class Package : BaseObject<Package>
 	{
+		public Package()
+		{
+			Websites = new HashedSet<Website>();
+			SetupSteps = new SortedSet<SetupStep>();
+		}
+
 		public virtual string Name { get; set; }
 
 		public virtual Version Version { get; set; }

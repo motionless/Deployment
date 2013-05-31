@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\Motionless.Data.Persistence.Test\bin\Debug\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -50,8 +53,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="PackageSetupTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Motionless.Data.Persistence\Motionless.Data.Persistence.csproj">
+      <Project>{C9CA3D6B-F27D-40E8-AE43-ED8607597553}</Project>
+      <Name>Motionless.Data.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Motionless.Deployment.Configuration\Motionless.Deployment.Configuration.csproj">
+      <Project>{E45B895F-07B6-47F0-9715-46E5FD22A0BA}</Project>
+      <Name>Motionless.Deployment.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Motionless.Deployment.Data.Model\Motionless.Deployment.Data.Model.csproj">
+      <Project>{1BE96E16-6F42-4C47-9C27-39B9B57E43E8}</Project>
+      <Name>Motionless.Deployment.Data.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
