@@ -1,15 +1,16 @@
 ﻿using Iesi.Collections.Generic;
 using Motionless.Data.Persistence;
 using System;
+using Motionless.Deployment.Contracts.Data.Model;
 
 namespace Motionless.Deployment.Data.Model
 {
-	public class Package : BaseObject<Package>
+	public class Package : BaseObject<Package>, IPackage
 	{
 		public Package()
 		{
-			Websites = new HashedSet<Website>();
-			SetupSteps = new SortedSet<SetupStep>();
+			Websites = new HashedSet<IWebsite>();
+			SetupSteps = new SortedSet<ISetupStep>();
 		}
 
 		public virtual string Name { get; set; }
@@ -18,11 +19,11 @@ namespace Motionless.Deployment.Data.Model
 
 		public virtual string PackageUrl { get; set; }
 
-		public virtual Iesi.Collections.Generic.ISet<Website> Websites { get; set; }
+		public virtual ISet<IWebsite> Websites { get; set; }
 
-		public virtual Product Product { get; set; }
+		public virtual IProduct Product { get; set; }
 
-		public virtual Iesi.Collections.Generic.ISet<SetupStep> SetupSteps { get; set; }
+		public virtual ISet<ISetupStep> SetupSteps { get; set; }
 
 	}
 }

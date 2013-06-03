@@ -6,7 +6,8 @@ using NHibernate.Linq;
 namespace Motionless.Data.Persistence
 {
 
-	public abstract class BaseObject<T> : IBaseObject where T : BaseObject<T>
+	public abstract class BaseObject<T> : IBaseObject 
+		where T : BaseObject<T>
 	{
 		/// <summary>
 		/// Gets or sets the id.

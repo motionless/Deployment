@@ -1,8 +1,11 @@
-﻿namespace Motionless.Deployment.Data.Model
+﻿using Motionless.Data.Persistence;
+using Motionless.Deployment.Contracts.Data.Model;
+
+namespace Motionless.Deployment.Data.Model
 {
-	public class ServerRole
+	public class ServerRole : BaseObject<ServerRole>, IServerRole
 	{
 		public virtual string Name {get;set;}
-		public virtual Server Server {get;set;}
+		public virtual IServer Server {get;set;}
 	}
 }

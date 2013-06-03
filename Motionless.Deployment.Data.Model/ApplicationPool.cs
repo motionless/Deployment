@@ -1,8 +1,9 @@
 ﻿using Motionless.Data.Persistence;
+using Motionless.Deployment.Contracts.Data.Model;
 
 namespace Motionless.Deployment.Data.Model
 {
-	public class ApplicationPool : BaseObject<ApplicationPool>
+	public class ApplicationPool : BaseObject<ApplicationPool>, IApplicationPool
 	{
 		public virtual string Name { get; set; }
 

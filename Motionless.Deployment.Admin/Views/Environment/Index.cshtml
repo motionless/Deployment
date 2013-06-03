@@ -1,0 +1,33 @@
+﻿@using Motionless.Deployment.Data.Model
+@using PagedList
+@using PagedList.Mvc
+@{
+	ViewBag.Title = "Environment List";
+}
+
+<h2>List of Environments</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Created At</th>
+	    <th>Updated At</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</thead>
+	@foreach (Motionless.Deployment.Data.Model.Environment environment in ViewBag.Environments)
+ {
+		<tr>
+			<td>@environment.Id</td>
+			<td>@environment.Name</td>
+			<td>@environment.CreatedAt</td>
+		    <td>@environment.UpdatedAt</td>
+			<td>@Html.ActionLink("Edit","Edit",new {environment.Id, page = ((IPagedList)ViewBag.Environments).PageNumber},new {@class="btn"})</td>
+			<td>@Html.ActionLink("Delete","Delete",new {environment.Id, page = ((IPagedList)ViewBag.Environments).PageNumber},new {@class="btn btn-danger"})</td>
+		</tr>
+ }
+</table>
+
+<!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+@Html.PagedListPager((IPagedList)ViewBag.Environments, page => Url.Action("Index", new { page }),new PagedListRenderOptions{Display = PagedListDisplayMode.IfNeeded})

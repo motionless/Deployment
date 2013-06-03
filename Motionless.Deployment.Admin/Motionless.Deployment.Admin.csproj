@@ -203,6 +203,11 @@
     <Content Include="Views\Server\Edit.cshtml" />
     <Content Include="Views\Server\EditorTemplates\Server.cshtml" />
     <Content Include="Views\Server\Index.cshtml" />
+    <Content Include="Views\Environment\Create.cshtml" />
+    <Content Include="Views\Environment\Details.cshtml" />
+    <Content Include="Views\Environment\Edit.cshtml" />
+    <Content Include="Views\Environment\EditorTemplates\Environment.cshtml" />
+    <Content Include="Views\Environment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

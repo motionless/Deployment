@@ -10,10 +10,13 @@
 			<column name="IsDeleted" sql-type="bit" not-null="true" />
 		</property>
 		<property name="CreatedAt">
-			<column name="CreatedAt" sql-type="datetime" not-null="true" />
+			<column name="CreatedAt" sql-type="UtcDateTime" not-null="true" />
 		</property>
 		<property name="UpdatedAt">
-			<column name="UpdatedAt" sql-type="datetime" not-null="true" />
+			<column name="UpdatedAt" sql-type="UtcDateTime" not-null="true" />
+		</property>
+		<property name="Name">
+			<column name="Name" not-null="false" sql-type="String" />
 		</property>
 	</class>
 </hibernate-mapping>

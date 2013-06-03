@@ -1,7 +1,7 @@
-﻿@model Motionless.Deployment.Data.Model.Product
+﻿@model Motionless.Deployment.Data.Model.Server
 <fieldset>
 	<legend>Product</legend>
-
+	@Html.HiddenFor(m => m.Id)
 	<div class="control-group">
 		@Html.LabelFor(model => model.Name, new { @class = "control-label" })
 

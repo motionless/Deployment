@@ -1,10 +1,11 @@
 ﻿using Motionless.Data.Persistence;
+using Motionless.Deployment.Contracts.Data.Model;
 
 namespace Motionless.Deployment.Data.Model
 {
-	public class Binding : BaseObject<Binding>
+	public class Binding : BaseObject<Binding>, IBinding
 	{
-		public virtual Website Website { get; set; }
+		public virtual IWebsite Website { get; set; }
 
 		public virtual string Protocol { get; set; }
 

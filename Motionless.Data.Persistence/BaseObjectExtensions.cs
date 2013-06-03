@@ -26,9 +26,9 @@ namespace Motionless.Data.Persistence
 			PersistenceHelper.SessionFactory.GetCurrentSession().Delete(baseObject);
 		}
 
-		public static void Merge<T>(this BaseObject<T> baseObject) where T : BaseObject<T>
+		public static BaseObject<T> Merge<T>(this BaseObject<T> baseObject) where T : BaseObject<T>
 		{
-			PersistenceHelper.SessionFactory.GetCurrentSession().Merge(baseObject);
+			return PersistenceHelper.SessionFactory.GetCurrentSession().Merge(baseObject);
 		}
 
 		public static IQueryable<T> Queryable<T>(this T queryableObject) where T : BaseObject<T>

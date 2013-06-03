@@ -1,4 +1,4 @@
-﻿namespace Motionless.Deployment.Data.Model
+﻿namespace Motionless.Deployment.Contracts.Enums
 {
 	public enum Stage
 	{

@@ -1,0 +1,14 @@
+﻿@model Motionless.Deployment.Data.Model.Environment
+@{
+	ViewBag.Title = "Create Environment";
+}
+@using (Html.BeginForm("Create", "Environment", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	@Html.EditorForModel()
+}
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>

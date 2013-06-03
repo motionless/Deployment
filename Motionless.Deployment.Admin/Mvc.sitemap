@@ -11,12 +11,19 @@
 			<mvcSiteMapNode title="Edit Product" controller="Product" action="Edit" />
 		</mvcSiteMapNode>
 		<mvcSiteMapNode title="Environment">
-			<mvcSiteMapNode title="List Environments" controller="Environment" action="Index"></mvcSiteMapNode>
+			<mvcSiteMapNode title="List Environments" controller="Environment" action="Index" />
+			<mvcSiteMapNode title="Create Environment" controller="Environment" action="Create" />
+			<mvcSiteMapNode title="Edit Environment" controller="Environment" action="Edit" />
 		</mvcSiteMapNode>
 		<mvcSiteMapNode title="Server">
 			<mvcSiteMapNode title="List Server" controller="Server" action="Index"/>
 			<mvcSiteMapNode title="Create Server" controller="Server" action="Create" />
 			<mvcSiteMapNode title="Edit Server" controller="Server" action="Edit" />
+		</mvcSiteMapNode>
+		<mvcSiteMapNode title="Package">
+			<mvcSiteMapNode title="List Packages" controller="Package" action="Index" />
+			<mvcSiteMapNode title="Create Package" controller="Package" action="Create" />
+			<mvcSiteMapNode title="Edit Package" controller="Package" action="Edit" />
 		</mvcSiteMapNode>
 		<mvcSiteMapNode title="About" controller="Home" action="About"/>
 	</mvcSiteMapNode>

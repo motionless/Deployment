@@ -8,39 +8,43 @@ namespace Motionless.Deployment.Admin.Controllers
 {
 	public class ProductController : Controller
 	{
-		//
-		// GET: /Product/
-
+		/// <summary>
+		/// List the specified page.
+		/// </summary>
+		/// <param name="page">The page.</param>
+		/// <returns></returns>
 		public ActionResult Index(int? page)
 		{
 			var pageNumber = page ?? 1;
-
 			var onePageOfProducts = Product.Queryable.ToPagedList(pageNumber, 10); // will only contain 25 products max because of the pageSize
-
 			ViewBag.OnePageOfProducts = onePageOfProducts;
-
 			return View();
 		}
 
-		//
-		// GET: /Product/Details/5
-
+		/// <summary>
+		/// Detailses product by the specified id.
+		/// </summary>
+		/// <param name="id">The id.</param>
+		/// <returns></returns>
 		public ActionResult Details(int id)
 		{
 			return View(Product.FindById(id));
 		}
 
-		//
-		// GET: /Product/Create
-
+		/// <summary>
+		/// Creates this instance.
+		/// </summary>
+		/// <returns></returns>
 		public ActionResult Create()
 		{
 			return View();
 		}
 
-		//
-		// POST: /Product/Create
-
+		/// <summary>
+		/// Creates the specified product.
+		/// </summary>
+		/// <param name="product">The product.</param>
+		/// <returns></returns>
 		[HttpPost]
 		public ActionResult Create(Product product)
 		{
@@ -57,66 +61,53 @@ namespace Motionless.Deployment.Admin.Controllers
 
 		}
 
-		//
-		// GET: /Product/Edit/5
-
+		/// <summary>
+		/// Edits the specified id.
+		/// </summary>
+		/// <param name="id">The id.</param>
+		/// <returns></returns>
 		public ActionResult Edit(int? id)
 		{
 			if (id.HasValue)
 			{
 				return View(Product.FindById(id.Value));
 			}
-			else
-			{
-				return RedirectToAction("Create");
-			}
-			
+			return RedirectToAction("Create");
 		}
 
-		//
-		// POST: /Product/Edit/5
 
+		/// <summary>
+		/// Save the changed product.
+		/// </summary>
+		/// <param name="id">The id.</param>
+		/// <param name="product">The product.</param>
+		/// <param name="page">The page.</param>
+		/// <returns></returns>
 		[HttpPost]
-		public ActionResult Edit(int id, FormCollection collection)
+		public ActionResult Edit(int id, Product product, int? page)
 		{
-			try
+			if (ModelState.IsValid)
 			{
-				// TODO: Add update logic here
-
-				return RedirectToAction("Index");
+				product.SaveOrUpdate();
+				return RedirectToAction("Index",new {page});
 			}
-			catch
-			{
-				return View();
-			}
+			return View(product);
 		}
 
-		//
-		// GET: /Product/Delete/5
-
+		/// <summary>
+		/// Delete product specified by id.
+		/// </summary>
+		/// <param name="id">The id.</param>
+		/// <param name="page">The page.</param>
+		/// <returns></returns>
 		public ActionResult Delete(int id, int? page)
 		{
-			var product = Product.Queryable.Where(p => p.Id == id).FirstOrDefault();
-			product.Delete();
-			return this.Index(page);
-		}
-
-		//
-		// POST: /Product/Delete/5
-
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection)
-		{
-			try
+			var product = Product.FindById(id);
+			if (product != null)
 			{
-				// TODO: Add delete logic here
-
-				return RedirectToAction("Index");
+				product.Delete();
 			}
-			catch
-			{
-				return View();
-			}
+			return RedirectToAction("Index",new {page}) ;
 		}
 	}
 }
