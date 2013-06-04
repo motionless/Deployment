@@ -78,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PersistenceHelper.cs" />
     <Compile Include="SortOrder.cs" />
+    <Compile Include="SortProperties.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
