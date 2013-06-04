@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Motionless.Data.Persistence;
 
@@ -31,8 +32,13 @@ namespace Motionless.Deployment.Services
 			}
 			return resultSet.Count();
 		}
-		
-		
+
+
+		/// <summary>
+		/// Gets the by id.
+		/// </summary>
+		/// <param name="id">The id.</param>
+		/// <returns></returns>
 		public TI GetById(long id)
 		{
 			using (var pc = PersistenceHelper.CreatePersistenceContext())
@@ -41,11 +47,26 @@ namespace Motionless.Deployment.Services
 			}
 		}
 
+		/// <summary>
+		/// Gets all.
+		/// </summary>
+		/// <param name="page">The page.</param>
+		/// <param name="pageSize">Size of the page.</param>
+		/// <param name="totalCount">The total count.</param>
+		/// <returns></returns>
 		public IEnumerable<TI> GetAll(int? page, int? pageSize, out long totalCount)
 		{
 			return GetAll(page, pageSize, false, out totalCount);
 		}
-		
+
+		/// <summary>
+		/// Gets all.
+		/// </summary>
+		/// <param name="page">The page.</param>
+		/// <param name="pageSize">Size of the page.</param>
+		/// <param name="includeDeleted">The include deleted.</param>
+		/// <param name="totalCount">The total count.</param>
+		/// <returns></returns>
 		public IEnumerable<TI> GetAll(int? page, int? pageSize, bool? includeDeleted, out long totalCount)
 		{
 			using (var pc = PersistenceHelper.CreatePersistenceContext())
@@ -70,6 +91,73 @@ namespace Motionless.Deployment.Services
 			}
 		}
 
+
+		public IEnumerable<TI> GetAll(int? page, int? pageSize, bool? includeDeleted,IDictionary<Func<BaseObject<T>, IComparable>,SortOrder> sortProperties, out long totalCount)
+		{
+			using (var pc = PersistenceHelper.CreatePersistenceContext())
+			{
+				IQueryable<T> resultSet = BaseObject<T>.Queryable;
+
+				if (!page.HasValue)
+				{
+					page = 0;
+				}
+				if (!pageSize.HasValue)
+				{
+					pageSize = 10;
+				}
+				if (includeDeleted.HasValue && !includeDeleted.Value)
+				{
+					resultSet = resultSet.Where(o => o.IsDeleted);
+				}
+
+				if (sortProperties.Any())
+				{
+					IOrderedQueryable<T> sortedResultSet = null;
+
+					KeyValuePair<Func<BaseObject<T>, IComparable>, SortOrder> firstCriteria = sortProperties.FirstOrDefault();
+					if (firstCriteria.Key != null)
+					{
+						if (firstCriteria.Value == SortOrder.Ascending)
+						{
+							sortedResultSet = resultSet.OrderBy(element => firstCriteria.Key(element));
+						}
+						else if (firstCriteria.Value == SortOrder.Descending)
+						{
+							sortedResultSet = resultSet.OrderByDescending(element => firstCriteria.Key(element));
+						}
+						if (sortedResultSet != null && sortProperties.Count > 1)
+						{
+							for (int i = 1; i < sortProperties.Count; i++)
+							{
+								var sortProperty = sortProperties.ElementAt(i);
+								if (sortProperty.Value == SortOrder.Ascending)
+								{
+									sortedResultSet = sortedResultSet.ThenBy(element => sortProperty.Key(element));
+								}
+								else if (sortProperty.Value == SortOrder.Descending)
+								{
+									sortedResultSet = sortedResultSet.ThenByDescending(element => sortProperty.Key(element));
+								}
+							}
+						}
+
+						resultSet = sortedResultSet;
+					}
+
+				}
+
+				totalCount = resultSet.Count();
+				return (IEnumerable<TI>)resultSet.Skip(page.Value * pageSize.Value).Take(pageSize.Value);
+			}
+		}
+
+
+		/// <summary>
+		/// Creates the specified base object interface.
+		/// </summary>
+		/// <param name="baseObjectInterface">The base object interface.</param>
+		/// <returns></returns>
 		public TI Create(TI baseObjectInterface)
 		{
 			BaseObject<T> savedObject = null;
@@ -81,6 +169,11 @@ namespace Motionless.Deployment.Services
 			return (TI)((IBaseObject)savedObject);
 		}
 
+		/// <summary>
+		/// Deletes the specified base object interface.
+		/// </summary>
+		/// <param name="baseObjectInterface">The base object interface.</param>
+		/// <returns></returns>
 		public TI Delete(TI baseObjectInterface)
 		{
 			BaseObject<T> savedObject = null;
@@ -93,6 +186,11 @@ namespace Motionless.Deployment.Services
 			return (TI)((IBaseObject)savedObject);
 		}
 
+		/// <summary>
+		/// Deletes the physically.
+		/// </summary>
+		/// <param name="baseObjectInterface">The base object interface.</param>
+		/// <returns></returns>
 		public TI DeletePhysically(TI baseObjectInterface)
 		{
 			BaseObject<T> savedObject = null;
