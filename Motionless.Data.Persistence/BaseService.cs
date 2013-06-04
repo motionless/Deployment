@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Motionless.Data.Persistence;
 
-namespace Motionless.Deployment.Services
+namespace Motionless.Data.Persistence
 {
-	public class BaseService<T,TI> 
+	public abstract class BaseService<T,TI> 
 		where T : BaseObject<T>
 		where TI : IBaseObject
 	{
@@ -15,7 +14,7 @@ namespace Motionless.Deployment.Services
 		/// <returns></returns>
 		public long Count()
 		{
-			return Count(false); 
+			return this.Count(false); 
 		}
 
 		/// <summary>
@@ -56,7 +55,7 @@ namespace Motionless.Deployment.Services
 		/// <returns></returns>
 		public IEnumerable<TI> GetAll(int? page, int? pageSize, out long totalCount)
 		{
-			return GetAll(page, pageSize, false, out totalCount);
+			return this.GetAll(page, pageSize, false, out totalCount);
 		}
 
 		/// <summary>
@@ -94,6 +93,7 @@ namespace Motionless.Deployment.Services
 
 		public IEnumerable<TI> GetAll(int? page, int? pageSize, bool? includeDeleted,IDictionary<Func<BaseObject<T>, IComparable>,SortOrder> sortProperties, out long totalCount)
 		{
+			totalCount = 0;
 			using (var pc = PersistenceHelper.CreatePersistenceContext())
 			{
 				IQueryable<T> resultSet = BaseObject<T>.Queryable;
@@ -144,11 +144,14 @@ namespace Motionless.Deployment.Services
 
 						resultSet = sortedResultSet;
 					}
-
 				}
 
-				totalCount = resultSet.Count();
-				return (IEnumerable<TI>)resultSet.Skip(page.Value * pageSize.Value).Take(pageSize.Value);
+				if (resultSet != null)
+				{
+					totalCount = resultSet.Count();
+					return (IEnumerable<TI>)resultSet.Skip(page.Value * pageSize.Value).Take(pageSize.Value);
+				}
+				return null;
 			}
 		}
 
