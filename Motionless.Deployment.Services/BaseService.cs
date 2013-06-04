@@ -80,5 +80,29 @@ namespace Motionless.Deployment.Services
 			}
 			return (TI)((IBaseObject)savedObject);
 		}
+
+		public TI Delete(TI baseObjectInterface)
+		{
+			BaseObject<T> savedObject = null;
+			using (var pc = PersistenceHelper.CreatePersistenceContext())
+			{
+				savedObject = BaseObject<T>.FindById(baseObjectInterface.Id);
+				savedObject.IsDeleted = true;
+
+			}
+			return (TI)((IBaseObject)savedObject);
+		}
+
+		public TI DeletePhysically(TI baseObjectInterface)
+		{
+			BaseObject<T> savedObject = null;
+			using (var pc = PersistenceHelper.CreatePersistenceContext())
+			{
+				savedObject = BaseObject<T>.FindById(baseObjectInterface.Id);
+				savedObject.Delete();
+			}
+			return (TI)((IBaseObject)savedObject);
+		}
+		
 	}
 }
