@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bootstrap;
+using Bootstrap.AutoMapper;
+using Bootstrap.Extensions.StartupTasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Motionless.Data.Persistence;
 using Motionless.Deployment.Contracts.Data.Model;
@@ -18,7 +21,8 @@ namespace Motionless.Deployment.Services.Test
 		public static void ClassInit(TestContext context)
 		{
 			PersistenceHelper.UpdateDatabaseSchema();
-			
+			Bootstrapper.With.AutoMapper().And.StartupTasks().Start();
+
 			service = new ProductService();
 		}
 
