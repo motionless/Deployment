@@ -9,7 +9,7 @@ using PagedList;
 
 namespace Motionless.Deployment.Admin.Controllers
 {
-    public class ServerController : Controller
+	public class ServerController : BaseController
     {
         public ActionResult Index(int? page)
         {

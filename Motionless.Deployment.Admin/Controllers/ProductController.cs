@@ -6,7 +6,7 @@ using PagedList;
 
 namespace Motionless.Deployment.Admin.Controllers
 {
-	public class ProductController : Controller
+	public class ProductController : BaseController
 	{
 		/// <summary>
 		/// List the specified page.
@@ -16,7 +16,7 @@ namespace Motionless.Deployment.Admin.Controllers
 		public ActionResult Index(int? page)
 		{
 			var pageNumber = page ?? 1;
-			var onePageOfProducts = Product.Queryable.ToPagedList(pageNumber, 10); // will only contain 25 products max because of the pageSize
+			var onePageOfProducts =  Product.Queryable.ToPagedList(pageNumber, 10); // will only contain 25 products max because of the pageSize
 			ViewBag.OnePageOfProducts = onePageOfProducts;
 			return View();
 		}

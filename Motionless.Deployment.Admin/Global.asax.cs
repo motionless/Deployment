@@ -7,6 +7,7 @@ using Bootstrap.AutoMapper;
 using Bootstrap.Extensions.StartupTasks;
 using Motionless.Data.Persistence;
 using Motionless.Deployment.Admin.App_Start;
+using Motionless.Deployment.Admin.Utilities.MEF;
 
 namespace Motionless.Deployment.Admin
 {
@@ -25,6 +26,7 @@ namespace Motionless.Deployment.Admin
 			PersistenceHelper.UpdateDatabaseSchema();
 
 			Bootstrapper.With.AutoMapper().And.StartupTasks().Start();
+			ControllerBuilder.Current.SetControllerFactory(new MefControllerFactory());
 		}
 
 		protected void Application_Error(Object sender, System.EventArgs e)
