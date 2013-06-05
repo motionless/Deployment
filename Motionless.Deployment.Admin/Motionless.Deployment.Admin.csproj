@@ -266,6 +266,10 @@
       <Project>{C9CA3D6B-F27D-40E8-AE43-ED8607597553}</Project>
       <Name>Motionless.Data.Persistence</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Motionless.Deployment.Services\Motionless.Deployment.Services.csproj">
+      <Project>{a4865a35-8958-465f-ae9c-05afaa67cfb9}</Project>
+      <Name>Motionless.Deployment.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
