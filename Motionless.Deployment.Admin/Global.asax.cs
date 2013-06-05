@@ -2,7 +2,9 @@
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-
+using Bootstrap;
+using Bootstrap.AutoMapper;
+using Bootstrap.Extensions.StartupTasks;
 using Motionless.Data.Persistence;
 using Motionless.Deployment.Admin.App_Start;
 
@@ -21,6 +23,8 @@ namespace Motionless.Deployment.Admin
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			
 			PersistenceHelper.UpdateDatabaseSchema();
+
+			Bootstrapper.With.AutoMapper().And.StartupTasks().Start();
 		}
 
 		protected void Application_Error(Object sender, System.EventArgs e)

@@ -54,6 +54,8 @@ namespace Motionless.Deployment.Services.Test
 				var product = new Product();
 				product.Name = string.Format("New Product ({0})", DateTime.UtcNow.Ticks);
 
+				pc.AfterCommitActions.Add(() => Console.WriteLine("Hello Wolrd! ({0})",product.Id));
+
 				service.Create(product);
 			}
 		}

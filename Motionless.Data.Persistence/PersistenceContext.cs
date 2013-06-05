@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Transactions;
 using NHibernate;
 using NHibernate.Context;
@@ -8,6 +9,7 @@ namespace Motionless.Data.Persistence
 {
 	public class PersistenceContext : IDisposable
 	{
+		private List<Action> afterCommitActions;
 		private TransactionScope TransactionScope { get; set; }
 
 		private ISession Session { get; set; }
@@ -15,6 +17,11 @@ namespace Motionless.Data.Persistence
 
 		private List<bool> Commits { get; set; }
 		private int RegisteredVotes { get; set; }
+
+		public List<Action> AfterCommitActions
+		{
+			get { return afterCommitActions; }
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PersistenceContext"/> class.
@@ -30,6 +37,8 @@ namespace Motionless.Data.Persistence
 		/// <param name="createNewScope">if set to <c>true</c> [create new scope].</param>
 		internal PersistenceContext(bool createNewScope)
 		{
+			afterCommitActions = new List<Action>();
+
 			if (!CurrentSessionContext.HasBind(PersistenceHelper.SessionFactory))
 			{
 				var session = PersistenceHelper.SessionFactory.OpenSession();
@@ -127,6 +136,11 @@ namespace Motionless.Data.Persistence
 			if (TransactionScope!= null)
 			{
 				TransactionScope.Complete();
+			}
+
+			foreach (var afterCommitAction  in AfterCommitActions)
+			{
+				afterCommitAction.Invoke();
 			}
 
 		}
