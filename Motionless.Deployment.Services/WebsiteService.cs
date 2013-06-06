@@ -5,8 +5,8 @@ using Motionless.Deployment.Contracts.Services;
 
 namespace Motionless.Deployment.Services
 {
-	[Export(typeof(IEnvironmentService))]
-	public class EnvironmentService : BaseService<Data.Model.Environment,IEnvironment>, IEnvironmentService
+	[Export(typeof(IWebsiteService))]
+	public class WebsiteService : BaseService<Data.Model.Website,IWebsite>, IWebsiteService
 	{
 		
 	}

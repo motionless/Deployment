@@ -1,4 +1,4 @@
-﻿namespace Motionless.Deployment.Services
+﻿namespace Motionless.Deployment.Contracts.Services
 {
 	public interface IPackageService
 	{

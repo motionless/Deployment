@@ -1,6 +1,6 @@
 ﻿namespace Motionless.Deployment.Contracts.Services
 {
-	public interface IEnvironmentService
+	public interface IServerService
 	{
 	}
 }
