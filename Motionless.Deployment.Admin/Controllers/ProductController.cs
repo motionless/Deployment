@@ -16,7 +16,9 @@ namespace Motionless.Deployment.Admin.Controllers
 		public ActionResult Index(int? page)
 		{
 			var pageNumber = page ?? 1;
-			var onePageOfProducts =  Product.Queryable.ToPagedList(pageNumber, 10); // will only contain 25 products max because of the pageSize
+			//var onePageOfProducts =  ProductService.   // Product.Queryable.ToPagedList(pageNumber, 10); // will only contain 25 products max because of the pageSize
+			ProductService.
+
 			ViewBag.OnePageOfProducts = onePageOfProducts;
 			return View();
 		}
