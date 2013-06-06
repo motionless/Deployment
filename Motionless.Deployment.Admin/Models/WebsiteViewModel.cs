@@ -15,7 +15,7 @@ namespace Motionless.Deployment.Admin.Models
 		public IApplicationPool ApplicationPool { get; set; }
 		public string Name { get; set; }
 		public string PhysicalPath { get; set; }
-		public Iesi.Collections.Generic.ISet<IBinding> Bindings { get; set; }
-		public Iesi.Collections.Generic.ISet<IVirtualDirectory> VirtualDirectories { get; set; }
+		public ISet<IBinding> Bindings { get; set; }
+		public ISet<IVirtualDirectory> VirtualDirectories { get; set; }
 	}
 }

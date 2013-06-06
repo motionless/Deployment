@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Motionless.Data.Persistence;
 
 namespace Motionless.Deployment.Contracts.Data.Model
@@ -8,8 +9,8 @@ namespace Motionless.Deployment.Contracts.Data.Model
 		string Name { get; set; }
 		Version Version { get; set; }
 		string PackageUrl { get; set; }
-		Iesi.Collections.Generic.ISet<IWebsite> Websites { get; set; }
+		ISet<IWebsite> Websites { get; set; }
 		IProduct Product { get; set; }
-		Iesi.Collections.Generic.ISet<ISetupStep> SetupSteps { get; set; }
+		ISet<ISetupStep> SetupSteps { get; set; }
 	}
 }

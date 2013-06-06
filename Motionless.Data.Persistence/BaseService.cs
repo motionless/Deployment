@@ -4,8 +4,7 @@ using System.Linq;
 
 namespace Motionless.Data.Persistence
 {
-	public abstract class BaseService<T,TI> 
-		where T : BaseObject<T>
+	public abstract class BaseService<T,TI> : IBaseService<TI> where T : BaseObject<T>
 		where TI : IBaseObject
 	{
 		/// <summary>
@@ -82,7 +81,7 @@ namespace Motionless.Data.Persistence
 				}
 				if (includeDeleted.HasValue && !includeDeleted.Value)
 				{
-					resultSet = resultSet.Where(o => o.IsDeleted);
+					resultSet = resultSet.Where(o => !o.IsDeleted);
 				}
 
 				totalCount = resultSet.Count();
@@ -90,8 +89,7 @@ namespace Motionless.Data.Persistence
 			}
 		}
 
-
-		public IEnumerable<TI> GetAll(int? page, int? pageSize, bool? includeDeleted,IDictionary<Func<BaseObject<T>, IComparable>,SortOrder> sortProperties, out long totalCount)
+		public IEnumerable<TI> GetAll(int? page, int? pageSize, bool? includeDeleted, IDictionary<Func<IBaseObject, IComparable>, SortOrder> sortProperties, out long totalCount)
 		{
 			totalCount = 0;
 			using (var pc = PersistenceHelper.CreatePersistenceContext())
@@ -108,14 +106,14 @@ namespace Motionless.Data.Persistence
 				}
 				if (includeDeleted.HasValue && !includeDeleted.Value)
 				{
-					resultSet = resultSet.Where(o => o.IsDeleted);
+					resultSet = resultSet.Where(o => !o.IsDeleted);
 				}
 
 				if (sortProperties.Any())
 				{
 					IOrderedQueryable<T> sortedResultSet = null;
 
-					KeyValuePair<Func<BaseObject<T>, IComparable>, SortOrder> firstCriteria = sortProperties.FirstOrDefault();
+					KeyValuePair<Func<IBaseObject, IComparable>, SortOrder> firstCriteria = sortProperties.FirstOrDefault();
 					if (firstCriteria.Key != null)
 					{
 						if (firstCriteria.Value == SortOrder.Ascending)
@@ -161,7 +159,7 @@ namespace Motionless.Data.Persistence
 		/// </summary>
 		/// <param name="baseObjectInterface">The base object interface.</param>
 		/// <returns></returns>
-		public TI Create(TI baseObjectInterface)
+		public TI CreateOrUpdate(TI baseObjectInterface)
 		{
 			BaseObject<T> savedObject = null;
 			using (var pc = PersistenceHelper.CreatePersistenceContext())
@@ -204,6 +202,5 @@ namespace Motionless.Data.Persistence
 			}
 			return (TI)((IBaseObject)savedObject);
 		}
-		
 	}
 }

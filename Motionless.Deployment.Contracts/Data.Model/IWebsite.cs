@@ -1,4 +1,5 @@
-﻿using Motionless.Data.Persistence;
+﻿using System.Collections.Generic;
+using Motionless.Data.Persistence;
 
 namespace Motionless.Deployment.Contracts.Data.Model
 {
@@ -7,7 +8,7 @@ namespace Motionless.Deployment.Contracts.Data.Model
 		IApplicationPool ApplicationPool { get; set; }
 		string Name { get; set; }
 		string PhysicalPath { get; set; }
-		Iesi.Collections.Generic.ISet<IBinding> Bindings { get; set; }
-		Iesi.Collections.Generic.ISet<IVirtualDirectory> VirtualDirectories { get; set; }
+		ISet<IBinding> Bindings { get; set; }
+		ISet<IVirtualDirectory> VirtualDirectories { get; set; }
 	}
 }

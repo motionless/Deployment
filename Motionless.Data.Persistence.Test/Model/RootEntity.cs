@@ -9,6 +9,6 @@ namespace Motionless.Data.Persistence.Test.Model
 	public class RootEntity : BaseObject<RootEntity>
 	{
 		public virtual string Name { get; set; }
-		public virtual Iesi.Collections.Generic.ISet<ChildEntity> Children { get; set; }
+		public virtual ISet<ChildEntity> Children { get; set; }
 	}
 }

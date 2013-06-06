@@ -1,4 +1,5 @@
-﻿using Iesi.Collections.Generic;
+﻿using System.Collections.Generic;
+
 using Motionless.Data.Persistence;
 using System;
 using Motionless.Deployment.Contracts.Data.Model;
@@ -9,7 +10,7 @@ namespace Motionless.Deployment.Data.Model
 	{
 		public Package()
 		{
-			Websites = new HashedSet<IWebsite>();
+			Websites = new SortedSet<IWebsite>();
 			SetupSteps = new SortedSet<ISetupStep>();
 		}
 

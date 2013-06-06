@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using Motionless.Data.Persistence.CollectionTypeFactory;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
@@ -30,7 +31,9 @@ namespace Motionless.Data.Persistence
 
 		public static void Initialize()
 		{
-			NhibernateConfiguration = new Configuration().Configure();
+			NhibernateConfiguration = new Configuration();
+			NhibernateConfiguration.Properties[NHibernate.Cfg.Environment.CollectionTypeFactoryClass] = typeof(Net4CollectionTypeFactory).AssemblyQualifiedName;
+			NhibernateConfiguration.Configure();
 
 			// Mapping by Mapping XML-Files
 			foreach (var xmlMappingAssembly in GetXmlMappingAssemblies())
@@ -51,6 +54,7 @@ namespace Motionless.Data.Persistence
 				HbmMapping domainMapping = modelMapper.CompileMappingForAllExplicitlyAddedEntities();
 				NhibernateConfiguration.AddMapping(domainMapping);
 			}
+
 			
 			SessionFactory = NhibernateConfiguration.BuildSessionFactory();
 		}

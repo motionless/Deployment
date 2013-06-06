@@ -1,4 +1,4 @@
-﻿using Iesi.Collections.Generic;
+﻿using System.Collections.Generic;
 using Motionless.Data.Persistence;
 using Motionless.Deployment.Contracts.Data.Model;
 
@@ -9,11 +9,11 @@ namespace Motionless.Deployment.Data.Model
 
 		public Product()
 		{
-			Environments = new OrderedSet<IEnvironment>();
-			Packages = new OrderedSet<IPackage>();
+			//Environments = new OrderedSet<IEnvironment>();
+			//Packages = new OrderedSet<IPackage>();
 		}
 		public virtual string Name { get; set; }
-		public virtual Iesi.Collections.Generic.ISet<IEnvironment> Environments { get; set; }
-		public virtual Iesi.Collections.Generic.ISet<IPackage> Packages { get; set; }
+		public virtual ISet<IEnvironment> Environments { get; set; }
+		public virtual ISet<IPackage> Packages { get; set; }
 	}
 }

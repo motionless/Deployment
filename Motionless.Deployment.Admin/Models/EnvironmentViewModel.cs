@@ -16,6 +16,6 @@ namespace Motionless.Deployment.Admin.Models
 		public string Name { get; set; }
 		public Stage Stage { get; set; }
 		public IProduct Product { get; set; }
-		public Iesi.Collections.Generic.ISet<IServer> Servers { get; set; }
+		public ISet<IServer> Servers { get; set; }
 	}
 }

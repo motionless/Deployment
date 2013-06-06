@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Motionless.Data.Persistence;
+using Motionless.Deployment.Admin.Models;
+using Motionless.Deployment.Contracts.Data.Model;
 using Motionless.Deployment.Data.Model;
 using PagedList;
 
@@ -15,11 +18,13 @@ namespace Motionless.Deployment.Admin.Controllers
 		/// <returns></returns>
 		public ActionResult Index(int? page)
 		{
-			var pageNumber = page ?? 1;
-			//var onePageOfProducts =  ProductService.   // Product.Queryable.ToPagedList(pageNumber, 10); // will only contain 25 products max because of the pageSize
-			ProductService.
+			var pageNumber = (page ?? 1) - 1;
+			long totalCount;
+			IEnumerable<IProduct> products = ProductService.GetAll(pageNumber, 10, out totalCount);
 
-			ViewBag.OnePageOfProducts = onePageOfProducts;
+			var pageInformation = new StaticPagedList<IProduct>(products, pageNumber + 1, 10, (int) totalCount);
+
+			ViewBag.OnePageOfProducts = pageInformation;
 			return View();
 		}
 
@@ -39,24 +44,25 @@ namespace Motionless.Deployment.Admin.Controllers
 		/// <returns></returns>
 		public ActionResult Create()
 		{
-			return View();
+			return View(new ProductViewModel());
 		}
 
 		/// <summary>
 		/// Creates the specified product.
 		/// </summary>
-		/// <param name="product">The product.</param>
+		/// <param name="productViewModel"></param>
 		/// <returns></returns>
 		[HttpPost]
-		public ActionResult Create(Product product)
+		public ActionResult Create(ProductViewModel productViewModel)
 		{
 			if (ModelState.IsValid)
 			{
-				product.SaveOrUpdate();
+				var product = AutoMapper.Mapper.Map<ProductViewModel, IProduct>(productViewModel);
+				ProductService.CreateOrUpdate(product);
 			}
 			else
 			{
-				return View(product);
+				return View(productViewModel);
 			}
 
 			return RedirectToAction("Index");
@@ -72,7 +78,8 @@ namespace Motionless.Deployment.Admin.Controllers
 		{
 			if (id.HasValue)
 			{
-				return View(Product.FindById(id.Value));
+				var product = ProductService.GetById(id.Value);
+				return View(AutoMapper.Mapper.Map<IProduct, ProductViewModel>(product));
 			}
 			return RedirectToAction("Create");
 		}
@@ -86,14 +93,15 @@ namespace Motionless.Deployment.Admin.Controllers
 		/// <param name="page">The page.</param>
 		/// <returns></returns>
 		[HttpPost]
-		public ActionResult Edit(int id, Product product, int? page)
+		public ActionResult Edit(int id, ProductViewModel productViewModel, int? page)
 		{
 			if (ModelState.IsValid)
 			{
-				product.SaveOrUpdate();
+				var product = AutoMapper.Mapper.Map<ProductViewModel, IProduct>(productViewModel);
+				ProductService.CreateOrUpdate(product);
 				return RedirectToAction("Index",new {page});
 			}
-			return View(product);
+			return View(productViewModel);
 		}
 
 		/// <summary>
@@ -104,10 +112,10 @@ namespace Motionless.Deployment.Admin.Controllers
 		/// <returns></returns>
 		public ActionResult Delete(int id, int? page)
 		{
-			var product = Product.FindById(id);
+			var product = ProductService.GetById(id);
 			if (product != null)
 			{
-				product.Delete();
+				ProductService.Delete(product);
 			}
 			return RedirectToAction("Index",new {page}) ;
 		}

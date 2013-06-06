@@ -1,4 +1,5 @@
-﻿using Motionless.Data.Persistence;
+﻿using System.Collections.Generic;
+using Motionless.Data.Persistence;
 using Motionless.Deployment.Contracts.Enums;
 
 namespace Motionless.Deployment.Contracts.Data.Model
@@ -8,6 +9,6 @@ namespace Motionless.Deployment.Contracts.Data.Model
 		string Name { get; set; }
 		Stage Stage { get; set; }
 		IProduct Product { get; set; }
-		Iesi.Collections.Generic.ISet<IServer> Servers { get; set; }
+		ISet<IServer> Servers { get; set; }
 	}
 }

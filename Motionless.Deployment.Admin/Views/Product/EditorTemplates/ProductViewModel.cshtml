@@ -1,7 +1,13 @@
-﻿@model Motionless.Deployment.Data.Model.Product
+﻿@model Motionless.Deployment.Admin.Models.ProductViewModel
+<script type="text/javascript">
+	
+</script>
+
 <fieldset>
 	<legend>Product</legend>
 	@Html.HiddenFor(m => m.Id)
+	
+	@Html.ValidationSummary(string.Empty,new {@class="alert alert-error"})
 	<div class="control-group">
 		@Html.LabelFor(model => model.Name, new { @class = "control-label" })
 

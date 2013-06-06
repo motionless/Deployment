@@ -13,7 +13,7 @@ namespace Motionless.Deployment.Admin.Models
 		public DateTime CreatedAt { get; set; }
 		public DateTime UpdatedAt { get; set; }
 		public string Name { get; set; }
-		public Iesi.Collections.Generic.ISet<IServerRole> ServerRoles { get; set; }
-		public Iesi.Collections.Generic.ISet<IEnvironment> Environments { get; set; }
+		public ISet<IServerRole> ServerRoles { get; set; }
+		public ISet<IEnvironment> Environments { get; set; }
 	}
 }

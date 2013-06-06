@@ -15,8 +15,8 @@ namespace Motionless.Deployment.Admin.Models
 		public string Name { get; set; }
 		public Version Version { get; set; }
 		public string PackageUrl { get; set; }
-		public Iesi.Collections.Generic.ISet<IWebsite> Websites { get; set; }
+		public ISet<IWebsite> Websites { get; set; }
 		public IProduct Product { get; set; }
-		public Iesi.Collections.Generic.ISet<ISetupStep> SetupSteps { get; set; }
+		public ISet<ISetupStep> SetupSteps { get; set; }
 	}
 }

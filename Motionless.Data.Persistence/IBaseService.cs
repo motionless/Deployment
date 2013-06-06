@@ -51,7 +51,7 @@ namespace Motionless.Data.Persistence
 		/// </summary>
 		/// <param name="baseObjectInterface">The base object interface.</param>
 		/// <returns></returns>
-		TI Create(TI baseObjectInterface);
+		TI CreateOrUpdate(TI baseObjectInterface);
 
 		/// <summary>
 		/// Deletes the specified base object interface.

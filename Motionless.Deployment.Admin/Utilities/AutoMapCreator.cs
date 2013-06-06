@@ -13,15 +13,15 @@ namespace Motionless.Deployment.Admin.Utilities
 	{
 		public void CreateMap(IProfileExpression mapper)
 		{
-			mapper.CreateMap<IProduct, ProductViewModel>();
-			mapper.CreateMap<IEnvironment, EnvironmentViewModel>();
-			mapper.CreateMap<IPackage,PackageViewModel>();
-			mapper.CreateMap<IServer,ServerViewModel>();
-			mapper.CreateMap<IWebsite,WebsiteViewModel>();
-			mapper.CreateMap<IApplicationPool,ApplicationPoolViewModel>();
-			mapper.CreateMap<IBinding,BindingViewModel>();
-			mapper.CreateMap<IVirtualDirectory,VirtualDirectoryViewModel>();
-			mapper.CreateMap<ISetupStep,SetupStepViewModel>();
+			mapper.CreateMap<IProduct, ProductViewModel>().MaxDepth(1);
+			mapper.CreateMap<IEnvironment, EnvironmentViewModel>().MaxDepth(1);
+			mapper.CreateMap<IPackage,PackageViewModel>().MaxDepth(1);
+			mapper.CreateMap<IServer,ServerViewModel>().MaxDepth(1);
+			mapper.CreateMap<IWebsite, WebsiteViewModel>().MaxDepth(1);
+			mapper.CreateMap<IApplicationPool, ApplicationPoolViewModel>().MaxDepth(1);
+			mapper.CreateMap<IBinding, BindingViewModel>().MaxDepth(1);
+			mapper.CreateMap<IVirtualDirectory, VirtualDirectoryViewModel>().MaxDepth(1);
+			mapper.CreateMap<ISetupStep, SetupStepViewModel>().MaxDepth(1);
 		}
 	}
 }
