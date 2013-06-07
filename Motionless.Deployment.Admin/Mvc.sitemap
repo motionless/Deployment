@@ -5,25 +5,30 @@
             enableLocalization="true">
 
 	<mvcSiteMapNode title="Home" controller="Home" action="Index">
-		<mvcSiteMapNode title="Products">
-			<mvcSiteMapNode title="List Products" controller="Product" action="Index"/>
-			<mvcSiteMapNode title="Create Product" controller="Product" action="Create"/>
-			<mvcSiteMapNode title="Edit Product" controller="Product" action="Edit" />
+		<mvcSiteMapNode title="Products" controller="Product">
+			<mvcSiteMapNode title="List Products" action="Index"/>
+			<mvcSiteMapNode title="Create Product" action="Create"/>
+			<mvcSiteMapNode title="Edit Product" action="Edit" />
 		</mvcSiteMapNode>
-		<mvcSiteMapNode title="Environment">
-			<mvcSiteMapNode title="List Environments" controller="Environment" action="Index" />
-			<mvcSiteMapNode title="Create Environment" controller="Environment" action="Create" />
-			<mvcSiteMapNode title="Edit Environment" controller="Environment" action="Edit" />
+		<mvcSiteMapNode title="Environment" controller="Environment">
+			<mvcSiteMapNode title="List Environments" action="Index" />
+			<mvcSiteMapNode title="Create Environment" action="Create" />
+			<mvcSiteMapNode title="Edit Environment" action="Edit" />
 		</mvcSiteMapNode>
-		<mvcSiteMapNode title="Server">
-			<mvcSiteMapNode title="List Server" controller="Server" action="Index"/>
-			<mvcSiteMapNode title="Create Server" controller="Server" action="Create" />
-			<mvcSiteMapNode title="Edit Server" controller="Server" action="Edit" />
+		<mvcSiteMapNode title="Server" controller="Server">
+			<mvcSiteMapNode title="List Server" action="Index"/>
+			<mvcSiteMapNode title="Create Server" action="Create" />
+			<mvcSiteMapNode title="Edit Server" action="Edit" />
 		</mvcSiteMapNode>
-		<mvcSiteMapNode title="Package">
-			<mvcSiteMapNode title="List Packages" controller="Package" action="Index" />
-			<mvcSiteMapNode title="Create Package" controller="Package" action="Create" />
-			<mvcSiteMapNode title="Edit Package" controller="Package" action="Edit" />
+		<mvcSiteMapNode title="Package" controller="Package">
+			<mvcSiteMapNode title="List Packages" action="Index" />
+			<mvcSiteMapNode title="Create Package" action="Create" />
+			<mvcSiteMapNode title="Edit Package" action="Edit" />
+		</mvcSiteMapNode>
+		<mvcSiteMapNode title="Website" controller="Website">
+			<mvcSiteMapNode title="List Websites" action="Index" />
+			<mvcSiteMapNode title="Create Website" action="Create" />
+			<mvcSiteMapNode title="Edit Website" action="Edit" />
 		</mvcSiteMapNode>
 		<mvcSiteMapNode title="About" controller="Home" action="About"/>
 	</mvcSiteMapNode>

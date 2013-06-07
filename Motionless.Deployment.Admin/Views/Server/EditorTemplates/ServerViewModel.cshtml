@@ -1,6 +1,7 @@
 ﻿@model Motionless.Deployment.Admin.Models.ServerViewModel
 <fieldset>
 	<legend>Product</legend>
+	@if(!ViewData.ModelState.IsValid){@Html.ValidationSummary(null,new {@class="alert alert-error"})}
 	@Html.HiddenFor(m => m.Id)
 	<div class="control-group">
 		@Html.LabelFor(model => model.Name, new { @class = "control-label" })

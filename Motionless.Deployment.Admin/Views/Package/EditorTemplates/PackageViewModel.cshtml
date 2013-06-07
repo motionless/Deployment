@@ -5,9 +5,9 @@
 
 <fieldset>
 	<legend>Product</legend>
-	@Html.HiddenFor(m => m.Id)
+	@if(!ViewData.ModelState.IsValid){@Html.ValidationSummary(null,new {@class="alert alert-error"})}
 	
-	@Html.ValidationSummary(string.Empty,new {@class="alert alert-error"})
+	@Html.HiddenFor(m => m.Id)
 	<div class="control-group">
 		@Html.LabelFor(model => model.Name, new { @class = "control-label" })
 

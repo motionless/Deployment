@@ -1,0 +1,13 @@
+﻿@model Motionless.Deployment.Admin.Models.WebsiteViewModel
+@{
+	ViewBag.Title = "Create Website";
+}
+@using (Html.BeginForm("Create","Website",FormMethod.Post,new {@class = "form-horizontal"})) {
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	@Html.EditorForModel()
+}
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>
