@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Motionless.Data.Persistence;
+using Motionless.Deployment.Admin.Models;
+using Motionless.Deployment.Contracts.Data.Model;
 using PagedList;
 
 namespace Motionless.Deployment.Admin.Controllers
@@ -12,10 +14,14 @@ namespace Motionless.Deployment.Admin.Controllers
 	{
 		public ActionResult Index(int? page)
 		{
+			var viewModel = new EnvironmentListViewModel();
 			var pageNumber = page ?? 1;
-			var environments = Data.Model.Environment.Queryable.ToPagedList(pageNumber, 10); // will only contain 25 products max because of the pageSize
-			ViewBag.Environments = environments;
-			return View();
+			long totalCount;
+			
+			IEnumerable<IEnvironment> environments = EnvironmentService.GetAll(pageNumber, PageSize, out totalCount);
+			viewModel.Environments = new StaticPagedList<IEnvironment>(environments, pageNumber + 1, PageSize, (int)totalCount);
+
+			return View(viewModel);
 		}
 
 		public ActionResult Details(int id)
@@ -25,49 +31,48 @@ namespace Motionless.Deployment.Admin.Controllers
 
 		public ActionResult Create()
 		{
-			return View(new Data.Model.Environment());
+			return View(new EnvironmentViewModel());
 		}
 
 		[HttpPost]
-		public ActionResult Create(Data.Model.Environment environment)
+		public ActionResult Create(EnvironmentViewModel viewModel)
 		{
 			if (ModelState.IsValid)
 			{
-				environment.SaveOrUpdate();
+				var environment = AutoMapper.Mapper.Map<EnvironmentViewModel, IEnvironment>(viewModel);
+				EnvironmentService.CreateOrUpdate(environment);
 				return RedirectToAction("Index");
 			}
-			return View(environment);
+			return View(viewModel);
 		}
 
-		public ActionResult Edit(int? id, int? page)
+		public ActionResult Edit(long? id, int? page)
 		{
 			if (id.HasValue)
 			{
-				return View(Data.Model.Environment.FindById(id.Value));
+				return View(AutoMapper.Mapper.Map<IEnvironment,EnvironmentViewModel>( EnvironmentService.GetById(id.Value)));
 			}
 			return RedirectToAction("Create");
 		}
 
 		[HttpPost]
-		public ActionResult Edit(int id, Data.Model.Environment environment , int? page)
+		public ActionResult Edit(EnvironmentViewModel viewModel , int? page)
 		{
-			try
+			if (ModelState.IsValid)
 			{
-				environment.SaveOrUpdate();
-				return RedirectToAction("Index", new { page });
+				var environment = AutoMapper.Mapper.Map<EnvironmentViewModel, IEnvironment>(viewModel);
+				EnvironmentService.CreateOrUpdate(environment);
+				return RedirectToAction("Index", new {page});
 			}
-			catch
-			{
-				return View(environment);
-			}
+			return View(viewModel);
 		}
 
 		public ActionResult Delete(int id, int? page)
 		{
-			var environment = Data.Model.Environment.FindById(id);
+			var environment = EnvironmentService.GetById(id);
 			if (environment != null)
 			{
-				environment.Delete();
+				EnvironmentService.Delete(environment);
 			}
 
 			return RedirectToAction("Index", new { page });

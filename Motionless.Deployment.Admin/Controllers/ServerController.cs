@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Motionless.Data.Persistence;
+using Motionless.Deployment.Admin.Models;
+using Motionless.Deployment.Contracts.Data.Model;
 using Motionless.Deployment.Data.Model;
 using PagedList;
 
@@ -13,10 +15,14 @@ namespace Motionless.Deployment.Admin.Controllers
 	{
 		public ActionResult Index(int? page)
 		{
-			var pageNumber = page ?? 1;
-			var servers = Data.Model.Server.Queryable.ToPagedList(pageNumber, 10); // will only contain 25 products max because of the pageSize
-			ViewBag.Servers = servers;
-			return View();
+			var viewModel = new ServerListViewModel();
+
+			var pageNumber = (page ?? 1) - 1;
+			long totalCount;
+			IEnumerable<IServer> servers = ServerService.GetAll(pageNumber, PageSize, out totalCount);
+
+			viewModel.Servers = new StaticPagedList<IServer>(servers, pageNumber + 1, PageSize, (int)totalCount);
+			return View(viewModel);
 		}
 
 		public ActionResult Details(int id)
@@ -26,49 +32,51 @@ namespace Motionless.Deployment.Admin.Controllers
 
 		public ActionResult Create()
 		{
-			return View();
+			return View(new ServerViewModel());
 		}
 
 		[HttpPost]
-		public ActionResult Create(Server server)
+		public ActionResult Create(ServerViewModel viewModel)
 		{
 			if (ModelState.IsValid)
 			{
-				server.SaveOrUpdate();
+				var server = AutoMapper.Mapper.Map<ServerViewModel, IServer>(viewModel);
+				ServerService.CreateOrUpdate(server);				
 				return RedirectToAction("Index");
 			}
-			return View(server);
+			return View(viewModel);
 		}
 
 		public ActionResult Edit(int? id, int? page)
 		{
 			if (id.HasValue)
 			{
-				return View(Data.Model.Server.FindById(id.Value));
+				return View(AutoMapper.Mapper.Map<IServer,ServerViewModel>(ServerService.GetById(id.Value)));
 			}
 			return RedirectToAction("Create");
 		}
 
 		[HttpPost]
-		public ActionResult Edit(int id, Server server, int? page)
+		public ActionResult Edit(ServerViewModel viewModel, int? page)
 		{
 			try
 			{
-				server.SaveOrUpdate();
+				var server = AutoMapper.Mapper.Map<ServerViewModel, IServer>(viewModel);
+				ServerService.CreateOrUpdate(server);
 				return RedirectToAction("Index",new {page});
 			}
 			catch
 			{
-				return View(server);
+				return View(viewModel);
 			}
 		}
 
 		public ActionResult Delete(int id, int? page)
 		{
-			var server = Data.Model.Server.FindById(id);
+			var server = ServerService.GetById(id);
 			if (server != null)
 			{
-				server.Delete();
+				ServerService.Delete(server);
 			}
 
 			return RedirectToAction("Index", new {page});

@@ -1,4 +1,5 @@
-﻿@using Motionless.Deployment.Data.Model
+﻿@model Motionless.Deployment.Admin.Models.ProductListViewModel
+@using Motionless.Deployment.Data.Model
 @using PagedList
 @using PagedList.Mvc
 @{
@@ -16,18 +17,18 @@
 	    <th>Edit</th>
         <th>Delete</th>
 	</thead>
-	@foreach (Product product in ViewBag.OnePageOfProducts)
+	@foreach (Product product in Model.Products)
  {
 		<tr>
 			<td>@product.Id</td>
 			<td>@product.Name</td>
 			<td>@product.CreatedAt</td>
 		    <td>@product.UpdatedAt</td>
-		    <td>@Html.ActionLink("Edit","Edit",new {@product.Id, page = ((IPagedList)ViewBag.OnePageOfProducts).PageNumber},new {@class="btn"})</td>
-            <td>@Html.ActionLink("Delete","Delete",new {@product.Id, page = ((IPagedList)ViewBag.OnePageOfProducts).PageNumber},new {@class="btn btn-danger"})</td>
+		    <td>@Html.ActionLink("Edit","Edit",new {@product.Id, page = Model.Products.PageNumber},new {@class="btn"})</td>
+            <td>@Html.ActionLink("Delete","Delete",new {@product.Id, page = Model.Products.PageNumber},new {@class="btn btn-danger"})</td>
 		</tr>
  }
 </table>
 
 <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }),new PagedListRenderOptions{Display = PagedListDisplayMode.IfNeeded})
+@Html.PagedListPager(Model.Products, page => Url.Action("Index", new { page }),new PagedListRenderOptions{Display = PagedListDisplayMode.IfNeeded})

@@ -13,6 +13,11 @@ namespace Motionless.Deployment.Admin.Controllers
 	[PartCreationPolicy(CreationPolicy.NonShared)]
     public class BaseController : Controller
     {
+		public int PageSize
+		{
+			get { return 10; }
+		}
+
 		[Import(typeof(IProductService))]
 		public IProductService ProductService { get; set; }
 
@@ -21,5 +26,8 @@ namespace Motionless.Deployment.Admin.Controllers
 
 		[Import(typeof(IPackageService))]
 		public IPackageService PackageService { get; set; }
+
+		[Import(typeof(IServerService))]
+		public IServerService ServerService { get; set; }
     }
 }

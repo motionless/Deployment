@@ -156,6 +156,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -166,6 +167,9 @@
     </Compile>
     <Compile Include="Models\ApplicationPoolViewModel.cs" />
     <Compile Include="Models\BindingViewModel.cs" />
+    <Compile Include="Models\PackageListViewModel.cs" />
+    <Compile Include="Models\ServerListViewModel.cs" />
+    <Compile Include="Models\EnvironmentListViewModel.cs" />
     <Compile Include="Models\EnvironmentViewModel.cs" />
     <Compile Include="Models\PackageViewModel.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
@@ -229,14 +233,19 @@
     <Content Include="Views\Server\Create.cshtml" />
     <Content Include="Views\Server\Details.cshtml" />
     <Content Include="Views\Server\Edit.cshtml" />
-    <Content Include="Views\Server\EditorTemplates\Server.cshtml" />
+    <Content Include="Views\Server\EditorTemplates\ServerViewModel.cshtml" />
     <Content Include="Views\Server\Index.cshtml" />
     <Content Include="Views\Environment\Create.cshtml" />
     <Content Include="Views\Environment\Details.cshtml" />
     <Content Include="Views\Environment\Edit.cshtml" />
-    <Content Include="Views\Environment\EditorTemplates\Environment.cshtml" />
+    <Content Include="Views\Environment\EditorTemplates\EnvironmentViewModel.cshtml" />
     <Content Include="Views\Environment\Index.cshtml" />
     <Content Include="_MSBuild\NuGetPackageAndPublish.targets" />
+    <Content Include="Views\Package\Create.cshtml" />
+    <Content Include="Views\Package\Details.cshtml" />
+    <Content Include="Views\Package\Edit.cshtml" />
+    <Content Include="Views\Package\EditorTemplates\PackageViewModel.cshtml" />
+    <Content Include="Views\Package\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,8 +7,8 @@ using PagedList;
 
 namespace Motionless.Deployment.Admin.Models
 {
-	public class ProductListViewModel
+	public class ServerListViewModel
 	{
-		public StaticPagedList<IProduct> Products { get; set; }
+		public StaticPagedList<IServer> Servers { get; set; }
 	}
 }

@@ -1,4 +1,5 @@
-﻿@using Motionless.Deployment.Data.Model
+﻿@model Motionless.Deployment.Admin.Models.ServerListViewModel
+@using Motionless.Deployment.Data.Model
 @using PagedList
 @using PagedList.Mvc
 @{
@@ -16,18 +17,18 @@
 		<th>Edit</th>
 		<th>Delete</th>
 	</thead>
-	@foreach (Server server in ViewBag.Servers)
+	@foreach (Server server in Model.Servers)
  {
 		<tr>
 			<td>@server.Id</td>
 			<td>@server.Name</td>
 			<td>@server.CreatedAt</td>
 		    <td>@server.UpdatedAt</td>
-			<td>@Html.ActionLink("Edit","Edit",new {@server.Id, page = ((IPagedList)ViewBag.Servers).PageNumber},new {@class="btn"})</td>
-			<td>@Html.ActionLink("Delete","Delete",new {@server.Id, page = ((IPagedList)ViewBag.Servers).PageNumber},new {@class="btn btn-danger"})</td>
+			<td>@Html.ActionLink("Edit","Edit",new {@server.Id, page = Model.Servers.PageNumber},new {@class="btn"})</td>
+			<td>@Html.ActionLink("Delete","Delete",new {@server.Id, page = Model.Servers.PageNumber},new {@class="btn btn-danger"})</td>
 		</tr>
  }
 </table>
 
 <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
-@Html.PagedListPager((IPagedList)ViewBag.Servers, page => Url.Action("Index", new { page }),new PagedListRenderOptions{Display = PagedListDisplayMode.IfNeeded})
+@Html.PagedListPager(Model.Servers, page => Url.Action("Index", new { page }),new PagedListRenderOptions{Display = PagedListDisplayMode.IfNeeded})
