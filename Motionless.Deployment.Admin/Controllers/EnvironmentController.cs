@@ -15,7 +15,7 @@ namespace Motionless.Deployment.Admin.Controllers
 		public ActionResult Index(int? page)
 		{
 			var viewModel = new EnvironmentListViewModel();
-			var pageNumber = page ?? 1;
+			var pageNumber = (page ?? 1) - 1;
 			long totalCount;
 			
 			IEnumerable<IEnvironment> environments = EnvironmentService.GetAll(pageNumber, PageSize, out totalCount);
@@ -31,7 +31,11 @@ namespace Motionless.Deployment.Admin.Controllers
 
 		public ActionResult Create()
 		{
-			return View(new EnvironmentViewModel());
+			var viewModel = new EnvironmentViewModel();
+
+			viewModel.Products = ProductService.GetAll().ToList();
+
+			return View(viewModel);
 		}
 
 		[HttpPost]
@@ -40,6 +44,10 @@ namespace Motionless.Deployment.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				var environment = AutoMapper.Mapper.Map<EnvironmentViewModel, IEnvironment>(viewModel);
+				if (viewModel != null && viewModel.SelectedProductId > 0)
+				{
+					environment.Product = ProductService.GetById(viewModel.SelectedProductId);
+				}
 				EnvironmentService.CreateOrUpdate(environment);
 				return RedirectToAction("Index");
 			}
@@ -50,7 +58,11 @@ namespace Motionless.Deployment.Admin.Controllers
 		{
 			if (id.HasValue)
 			{
-				return View(AutoMapper.Mapper.Map<IEnvironment,EnvironmentViewModel>( EnvironmentService.GetById(id.Value)));
+				var viewModel = AutoMapper.Mapper.Map<IEnvironment, EnvironmentViewModel>(EnvironmentService.GetById(id.Value));
+				viewModel.Products = ProductService.GetAll().ToList();
+				viewModel.SelectedProductId = viewModel.Product.Id;
+
+				return View(viewModel);
 			}
 			return RedirectToAction("Create");
 		}
@@ -61,6 +73,10 @@ namespace Motionless.Deployment.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				var environment = AutoMapper.Mapper.Map<EnvironmentViewModel, IEnvironment>(viewModel);
+				if (viewModel != null && viewModel.SelectedProductId > 0)
+				{
+					environment.Product = ProductService.GetById(viewModel.SelectedProductId);
+				}
 				EnvironmentService.CreateOrUpdate(environment);
 				return RedirectToAction("Index", new {page});
 			}

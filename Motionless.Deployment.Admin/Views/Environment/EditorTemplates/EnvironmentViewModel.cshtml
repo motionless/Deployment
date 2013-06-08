@@ -3,6 +3,8 @@
 @model Motionless.Deployment.Admin.Models.EnvironmentViewModel
 <fieldset>
 	<legend>Environment</legend>
+	@if(!ViewData.ModelState.IsValid){@Html.ValidationSummary(string.Join(",",ViewData.ModelState.Keys.Where(k => !ViewData.ModelState.IsValidField(k)).Select(k=>k)),new {@class="alert alert-error"})}
+	
 	@Html.HiddenFor(m => m.Id)
 	<div class="control-group">
 		@Html.LabelFor(model => model.Name, new { @class = "control-label" })
@@ -25,7 +27,7 @@
 		@Html.LabelFor(model => model.Stage, new { @class = "control-label" })
 
 		<div class="controls">
-			@Html.DropDownListFor(model => model.Stage, Enum.GetNames(typeof(Stage)).Select(name => new SelectListItem() { Text = name, Value = ((int)Enum.Parse(typeof(Stage), name)).ToString() }))
+			@Html.DropDownListFor(model => model.Stage,Model.StagesSelectList)
 			@Html.ValidationMessageFor(model => model.Stage)
 		</div>
 	</div>
@@ -33,7 +35,7 @@
 		@Html.LabelFor(model => model.Product, new { @class = "control-label" })
 
 		<div class="controls">
-			@Html.DropDownListFor(model => model.Product, Product.FindAll().Select(p => new SelectListItem(){Text = p.Name, Value = p.Id.ToString()}))
+			@Html.DropDownListFor(model => model.SelectedProductId, Model.ProductsSelectList )
 			@Html.ValidationMessageFor(model => model.Product)
 		</div>
 	</div>

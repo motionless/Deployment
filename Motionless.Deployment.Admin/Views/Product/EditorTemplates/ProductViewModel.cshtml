@@ -24,11 +24,11 @@
 			@Html.ValidationMessageFor(model => model.IsDeleted)
 		</div>
 	</div>
-	@*<div class="control-group">
+	<div class="control-group">
 		@Html.LabelFor(model => model.CreatedAt, new { @class = "control-label" })
 
 		<div class="controls">
-			@Html.EditorFor(model => model.CreatedAt)
+			@Html.DisplayFor(model => model.CreatedAt)
 			@Html.ValidationMessageFor(model => model.CreatedAt)
 		</div>
 	</div>
@@ -36,10 +36,32 @@
 		@Html.LabelFor(model => model.UpdatedAt, new { @class = "control-label" })
 
 		<div class="controls">
-			@Html.EditorFor(model => model.UpdatedAt)
+			@Html.DisplayFor(model => model.UpdatedAt)
 			@Html.ValidationMessageFor(model => model.UpdatedAt)
 		</div>
-	</div>*@
+	</div>
+	
+	@if (Model.Environments.Any())
+	{
+		<h2>Environments</h2>
+		<ul>
+		@foreach (var environment in Model.Environments)
+		{
+			<li>@Html.DisplayFor(m => environment.Name) - @Html.ActionLink("Edit","Edit","Environment", new {Id = environment.Id},new {@class = "btn btn-mini"})</li>
+		}
+		</ul>
+	}
+	
+	@if (Model.Packages.Any())
+	{
+		<h2>Packages</h2>
+		<ul>
+		@foreach (var package in Model.Packages)
+		{
+			<li>@Html.DisplayFor(m => package.Name) - @Html.ActionLink("Edit","Edit","Package", new {Id = package.Id},new {@class = "btn btn-mini"})</li>
+		}
+		</ul>
+	}
 
 	<div class="control-group">
 		<div class="controls">

@@ -28,6 +28,12 @@ namespace Motionless.Data.Persistence
 		/// <summary>
 		/// Gets all.
 		/// </summary>
+		/// <returns></returns>
+		IEnumerable<TI> GetAll();
+
+		/// <summary>
+		/// Gets all.
+		/// </summary>
 		/// <param name="page">The page.</param>
 		/// <param name="pageSize">Size of the page.</param>
 		/// <param name="totalCount">The total count.</param>

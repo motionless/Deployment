@@ -45,6 +45,12 @@ namespace Motionless.Data.Persistence
 			}
 		}
 
+		public IEnumerable<TI> GetAll()
+		{
+			long totalCount = 0;
+			return this.GetAll(-1, -1, out totalCount);
+		}
+
 		/// <summary>
 		/// Gets all.
 		/// </summary>
@@ -85,7 +91,14 @@ namespace Motionless.Data.Persistence
 				}
 
 				totalCount = resultSet.Count();
-				return (IEnumerable<TI>) resultSet.Skip(page.Value*pageSize.Value).Take(pageSize.Value);
+				if (page.Value >= 0 && pageSize.Value >= 0)
+				{
+					return (IEnumerable<TI>)resultSet.Skip(page.Value * pageSize.Value).Take(pageSize.Value);
+				}
+				else
+				{
+					return (IEnumerable<TI>)resultSet;
+				}
 			}
 		}
 
