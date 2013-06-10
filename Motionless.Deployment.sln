@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestConfig", "TestConfig", 
 		TestConfig\App.config = TestConfig\App.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motionless.Deployment.Service.Test", "Motionless.Deployment.Service.Test\Motionless.Deployment.Service.Test.csproj", "{2F4E24F6-7F9E-4C64-8693-60D7A4040B53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{8C481752-79C3-463F-89D9-60603DFD6693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C481752-79C3-463F-89D9-60603DFD6693}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C481752-79C3-463F-89D9-60603DFD6693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F4E24F6-7F9E-4C64-8693-60D7A4040B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F4E24F6-7F9E-4C64-8693-60D7A4040B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F4E24F6-7F9E-4C64-8693-60D7A4040B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F4E24F6-7F9E-4C64-8693-60D7A4040B53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

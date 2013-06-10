@@ -13,5 +13,7 @@ namespace Motionless.Deployment.Contracts.Data.Model
 		IProduct Product { get; set; }
 		string SearchPath { get; set; }
 		string SearchPattern { get; set; }
+		ISet<IWebsite> Websites { get; set; }
+		ISet<ISetupStep> SetupSteps { get; set; }
 	}
 }

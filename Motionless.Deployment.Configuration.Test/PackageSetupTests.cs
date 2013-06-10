@@ -9,7 +9,7 @@ namespace Motionless.Deployment.Configuration.Test
 		[TestMethod]
 		public void CreateWebsite()
 		{
-			var website = new Website
+			Website website = new Website
 				              {
 					              Name = "Test Website",
 					              PhysicalPath = @"C:\windows\temp",

@@ -70,6 +70,10 @@
       <Project>{B3A65837-967D-4876-9F94-6B47DDEB6EC8}</Project>
       <Name>Motionless.Deployment.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Motionless.Deployment.Data.Model\Motionless.Deployment.Data.Model.csproj">
+      <Project>{1be96e16-6f42-4c47-9c27-39b9b57e43e8}</Project>
+      <Name>Motionless.Deployment.Data.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Motionless.Deployment.Services\Motionless.Deployment.Services.csproj">
       <Project>{A4865A35-8958-465F-AE9C-05AFAA67CFB9}</Project>
       <Name>Motionless.Deployment.Services</Name>

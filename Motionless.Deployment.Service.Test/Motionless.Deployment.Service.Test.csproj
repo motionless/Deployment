@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E45B895F-07B6-47F0-9715-46E5FD22A0BA}</ProjectGuid>
+    <ProjectGuid>{2F4E24F6-7F9E-4C64-8693-60D7A4040B53}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Motionless.Deployment.Configuration</RootNamespace>
-    <AssemblyName>Motionless.Deployment.Configuration</AssemblyName>
+    <RootNamespace>Motionless.Deployment.Service.Test</RootNamespace>
+    <AssemblyName>Motionless.Deployment.Service.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\builtResults\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,19 +24,19 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\builtResults\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    <Reference Include="Bootstrapper">
+      <HintPath>..\Motionless.Deployment.Admin\bin\Bootstrapper.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Administration, Version=7.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\System32\inetsrv\Microsoft.Web.Administration.dll</HintPath>
+    <Reference Include="Bootstrapper.AutoMapper">
+      <HintPath>..\Motionless.Deployment.Admin\bin\Bootstrapper.AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,21 +46,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PackageSetup.cs" />
+    <Compile Include="PackageDiscoveryWorkerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Motionless.Deployment.Contracts\Motionless.Deployment.Contracts.csproj">
-      <Project>{B3A65837-967D-4876-9F94-6B47DDEB6EC8}</Project>
-      <Name>Motionless.Deployment.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Motionless.Deployment.Data.Model\Motionless.Deployment.Data.Model.csproj">
-      <Project>{1BE96E16-6F42-4C47-9C27-39B9B57E43E8}</Project>
-      <Name>Motionless.Deployment.Data.Model</Name>
-    </ProjectReference>
+    <None Include="..\TestConfig\App.config">
+      <Link>App.config</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Motionless.Data.Persistence\Motionless.Data.Persistence.csproj">
       <Project>{C9CA3D6B-F27D-40E8-AE43-ED8607597553}</Project>
       <Name>Motionless.Data.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Motionless.Deployment.Contracts\Motionless.Deployment.Contracts.csproj">
+      <Project>{b3a65837-967d-4876-9f94-6b47ddeb6ec8}</Project>
+      <Name>Motionless.Deployment.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Motionless.Deployment.Data.Model\Motionless.Deployment.Data.Model.csproj">
+      <Project>{1be96e16-6f42-4c47-9c27-39b9b57e43e8}</Project>
+      <Name>Motionless.Deployment.Data.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Motionless.Deployment.Services\Motionless.Deployment.Services.csproj">
+      <Project>{a4865a35-8958-465f-ae9c-05afaa67cfb9}</Project>
+      <Name>Motionless.Deployment.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Motionless.Deployment.Service\Motionless.Deployment.Service.csproj">
+      <Project>{C44A99D8-1FB1-4328-A3CE-882AB9C2EB26}</Project>
+      <Name>Motionless.Deployment.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

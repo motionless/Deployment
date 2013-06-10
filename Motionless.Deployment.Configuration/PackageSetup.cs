@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Web.Administration;
+using Motionless.Deployment.Contracts.Data.Model;
 using Motionless.Deployment.Data.Model;
 using ApplicationPool = Motionless.Deployment.Data.Model.ApplicationPool;
 using Binding = Motionless.Deployment.Data.Model.Binding;
+using VirtualDirectory = Motionless.Deployment.Data.Model.VirtualDirectory;
 
 namespace Motionless.Deployment.Configuration
 {
@@ -26,7 +28,7 @@ namespace Motionless.Deployment.Configuration
 				var applicationPools = package.Websites.Select(website => website.ApplicationPool);
 				foreach (var applicationPool in applicationPools)
 				{
-					CreateOrUpdateApplicationPool(applicationPool);
+					CreateOrUpdateApplicationPool(applicationPool as ApplicationPool);
 				}
 			}
 			
@@ -34,13 +36,13 @@ namespace Motionless.Deployment.Configuration
 			{
 				foreach (var website in package.Websites)
 				{
-					CreateOrUpdateWebsite(website);
+					CreateOrUpdateWebsite(website as Website);
 
 					if (website.VirtualDirectories.Any())
 					{
 						foreach (var virtualDirectory in website.VirtualDirectories)
 						{
-							CreateOrUpdateVirtualDirectory(virtualDirectory);
+							CreateOrUpdateVirtualDirectory(virtualDirectory as VirtualDirectory);
 						}
 					}
 
@@ -117,13 +119,13 @@ namespace Motionless.Deployment.Configuration
 		/// </summary>
 		/// <param name="bindings">The bindings.</param>
 		/// <returns></returns>
-		public void CreateOrUpdateBindings(IEnumerable<Data.Model.Binding> bindings)
+		public void CreateOrUpdateBindings(IEnumerable<IBinding> bindings)
 		{
 			using (var serverManager = new ServerManager())
 			{
 				if (bindings != null)
 				{
-					Binding firstBinding = bindings.FirstOrDefault();
+					IBinding firstBinding = bindings.FirstOrDefault();
 					var website = serverManager.Sites.FirstOrDefault(site => firstBinding != null && site.Name == firstBinding.Website.Name);
 					if (website != null)
 					{

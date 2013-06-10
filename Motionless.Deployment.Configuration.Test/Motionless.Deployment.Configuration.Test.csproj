@@ -65,6 +65,10 @@
       <Project>{E45B895F-07B6-47F0-9715-46E5FD22A0BA}</Project>
       <Name>Motionless.Deployment.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Motionless.Deployment.Contracts\Motionless.Deployment.Contracts.csproj">
+      <Project>{B3A65837-967D-4876-9F94-6B47DDEB6EC8}</Project>
+      <Name>Motionless.Deployment.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Motionless.Deployment.Data.Model\Motionless.Deployment.Data.Model.csproj">
       <Project>{1BE96E16-6F42-4C47-9C27-39B9B57E43E8}</Project>
       <Name>Motionless.Deployment.Data.Model</Name>
