@@ -35,20 +35,24 @@ namespace Motionless.Deployment.Service
 				foreach (IPackageConfiguration packageConfiguration in configurations)
 				{
 					var lastPackageForConfiguration = packageConfiguration.Packages.OrderBy(package => package.CreatedAt).LastOrDefault();
-
-				}
-			}
-
-			var packageConfigurations = PackageConfigurationService.GetAll();
-			foreach (IPackageConfiguration packageConfiguration in packageConfigurations)
-			{
-				if (packageConfiguration.SearchPath != null)
-				{
-					foreach (string file in Directory.EnumerateFiles(packageConfiguration.SearchPath, packageConfiguration.SearchPattern))
+					if (lastPackageForConfiguration != null)
 					{
-						
-					}
+						var version = lastPackageForConfiguration.Version;
+						var name = lastPackageForConfiguration.Name;
 
+						if (packageConfiguration.SearchPath != null)
+						{
+							var lastFileName = string.Format("{0}_{1}.{2}.{3}.zip", name, version.Major, version.MajorRevision, version.Minor);
+							foreach (string file in Directory.EnumerateFiles(packageConfiguration.SearchPath, packageConfiguration.SearchPattern))
+							{
+								if (System.String.Compare(file, lastFileName, System.StringComparison.InvariantCultureIgnoreCase) > 0)
+								{	
+									//create package for this configuration
+								}
+							}
+
+						}
+					}
 				}
 			}
 		}

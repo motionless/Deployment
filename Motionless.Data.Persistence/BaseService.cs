@@ -4,9 +4,10 @@ using System.Linq;
 
 namespace Motionless.Data.Persistence
 {
-	public abstract class BaseService<T,TI> : IBaseService<TI> where T : BaseObject<T>
+	public abstract class BaseService<T,TI> : IBaseService<TI> where T : BaseObject<T>, new()
 		where TI : IBaseObject
 	{
+		
 		/// <summary>
 		/// Counts all elements dispite the deleted ones.
 		/// </summary>
@@ -166,6 +167,10 @@ namespace Motionless.Data.Persistence
 			}
 		}
 
+		public TI CreateInstance()
+		{
+			return (TI)((IBaseObject)new T());
+		}
 
 		/// <summary>
 		/// Creates the specified base object interface.
