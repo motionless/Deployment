@@ -61,6 +61,24 @@
 			</table>
 		</div>
  }
+	
+	@if (Model.PackageConfigurations.Any())
+ {
+		<h4>Package Configurations</h4>
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th>Edit</th>
+			</tr>
+			@foreach (var packageConfiguration in Model.PackageConfigurations)
+   {
+				<tr>
+					<td>@Html.DisplayFor(m => packageConfiguration.Name)</td>
+					<td>@Html.ActionLink("Edit", "Edit", "PackageConfiguration", new { Id = packageConfiguration.Id }, new { @class = "btn btn-small" })</td>
+				</tr>
+   }
+		</table>
+ }
 
 	@if (Model.Packages.Any())
  {

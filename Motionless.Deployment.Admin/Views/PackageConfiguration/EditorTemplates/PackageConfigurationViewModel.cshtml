@@ -1,0 +1,82 @@
+﻿@model Motionless.Deployment.Admin.Models.PackageConfigurationViewModel
+<script type="text/javascript">
+	
+</script>
+
+<fieldset>
+	<legend>Product</legend>
+	@if(!ViewData.ModelState.IsValid){@Html.ValidationSummary(null,new {@class="alert alert-error"})}
+	
+	@Html.HiddenFor(m => m.Id)
+	<div class="control-group">
+		@Html.LabelFor(model => model.Name, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.Name)
+			@Html.ValidationMessageFor(model => model.Name)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.IsDeleted, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.IsDeleted)
+			@Html.ValidationMessageFor(model => model.IsDeleted)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.IsActive, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.IsActive)
+			@Html.ValidationMessageFor(model => model.IsActive)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.SearchPath, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.SearchPath)
+			@Html.ValidationMessageFor(model => model.SearchPath)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.SearchPattern, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.SearchPattern)
+			@Html.ValidationMessageFor(model => model.SearchPattern)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.Version, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.Version)
+			@Html.ValidationMessageFor(model => model.Version)
+		</div>
+	</div>
+	@*<div class="control-group">
+		@Html.LabelFor(model => model.CreatedAt, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.CreatedAt)
+			@Html.ValidationMessageFor(model => model.CreatedAt)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.UpdatedAt, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.UpdatedAt)
+			@Html.ValidationMessageFor(model => model.UpdatedAt)
+		</div>
+	</div>*@
+
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn">Create</button>
+		</div>
+	</div>
+
+</fieldset>

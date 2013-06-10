@@ -8,6 +8,7 @@ using Bootstrap.Extensions.StartupTasks;
 using Motionless.Data.Persistence;
 using Motionless.Deployment.Admin.App_Start;
 using Motionless.Deployment.Admin.Utilities.MEF;
+using Motionless.Deployment.Admin.Utilities.ModelBinder;
 
 namespace Motionless.Deployment.Admin
 {
@@ -24,6 +25,9 @@ namespace Motionless.Deployment.Admin
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			
 			PersistenceHelper.UpdateDatabaseSchema();
+
+
+			ModelBinders.Binders[typeof(Version)] = new VersionModelBinder();
 
 			Bootstrapper.With.AutoMapper().And.StartupTasks().Start();
 			ControllerBuilder.Current.SetControllerFactory(new MefControllerFactory());

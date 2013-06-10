@@ -1,0 +1,13 @@
+﻿@model Motionless.Deployment.Admin.Models.PackageConfigurationViewModel
+@{
+	ViewBag.Title = "Create Product";
+}
+@using (Html.BeginForm("Create","PackageConfiguration",FormMethod.Post,new {@class = "form-horizontal"})) {
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	@Html.EditorForModel()
+}
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>

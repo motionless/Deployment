@@ -32,54 +32,58 @@ namespace Motionless.Deployment.Service
 		/// </summary>
 		public void ProcessPackageConfigurations()
 		{
+			
 			IEnumerable<IProduct> products = ProductService.GetAll();
 			foreach (IProduct product in products)
 			{
-				var configurations = product.PackageConfigurations.Where(config => config.IsActive).ToList();
-				foreach (IPackageConfiguration packageConfiguration in configurations)
+				if (product.PackageConfigurations != null)
 				{
-					var lastPackageForConfiguration = packageConfiguration.Packages.OrderBy(package => package.CreatedAt).LastOrDefault();
-					if (lastPackageForConfiguration != null)
+					var configurations = product.PackageConfigurations.Where(config => config.IsActive).ToList();
+					foreach (IPackageConfiguration packageConfiguration in configurations)
 					{
-						var version = lastPackageForConfiguration.Version;
-						var name = lastPackageForConfiguration.Name;
-
-						if (packageConfiguration.SearchPath != null)
+						var lastPackageForConfiguration = packageConfiguration.Packages.OrderBy(package => package.CreatedAt).LastOrDefault();
+						if (lastPackageForConfiguration != null)
 						{
-							var lastFileName = string.Format("{0}_{1}.{2}.{3}.zip", name, version.Major, version.Minor, version.Build);
-							foreach (string file in Directory.EnumerateFiles(packageConfiguration.SearchPath, packageConfiguration.SearchPattern))
+							var version = lastPackageForConfiguration.Version;
+							var name = lastPackageForConfiguration.Name;
+
+							if (packageConfiguration.SearchPath != null)
 							{
-								if (String.Compare(file, lastFileName, StringComparison.InvariantCultureIgnoreCase) > 0)
-								{	
-									//create package for this configuration
-									IPackage package = PackageService.CreateInstance();
-									Match matches = FilenamePattern.Match(file);
+								var lastFileName = string.Format("{0}_{1}.{2}.{3}.zip", name, version.Major, version.Minor, version.Build);
+								foreach (string file in Directory.EnumerateFiles(packageConfiguration.SearchPath, packageConfiguration.SearchPattern))
+								{
+									if (String.Compare(file, lastFileName, StringComparison.InvariantCultureIgnoreCase) > 0)
+									{	
+										//create package for this configuration
+										IPackage package = PackageService.CreateInstance();
+										Match matches = FilenamePattern.Match(file);
 
-									if (matches.Success)
-									{
-										package.Name = matches.Groups[1].Value;
-
-										int major;
-										if (int.TryParse(matches.Groups[2].Value, out major))
+										if (matches.Success)
 										{
-											int minor;
-											if (int.TryParse(matches.Groups[3].Value, out minor))
+											package.Name = matches.Groups[1].Value;
+
+											int major;
+											if (int.TryParse(matches.Groups[2].Value, out major))
 											{
-												int build;
-												if (int.TryParse(matches.Groups[4].Value, out build))
+												int minor;
+												if (int.TryParse(matches.Groups[3].Value, out minor))
 												{
-													package.Version = new Version(major,minor,build);
+													int build;
+													if (int.TryParse(matches.Groups[4].Value, out build))
+													{
+														package.Version = new Version(major,minor,build);
+													}
 												}
 											}
 										}
+										package.Product = product;
+										package.Websites = packageConfiguration.Websites;
+										package.SetupSteps = packageConfiguration.SetupSteps;
+										package.PackageUrl = file;
 									}
-									package.Product = product;
-									package.Websites = packageConfiguration.Websites;
-									package.SetupSteps = packageConfiguration.SetupSteps;
-									package.PackageUrl = file;
 								}
-							}
 
+							}
 						}
 					}
 				}

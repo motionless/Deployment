@@ -17,7 +17,7 @@ namespace Motionless.Deployment.Data.Model
 		public virtual IProduct Product { get; set; }
 		public virtual string SearchPath { get; set; }
 		public virtual string SearchPattern { get; set; }
-		public ISet<IWebsite> Websites { get; set; }
-		public ISet<ISetupStep> SetupSteps { get; set; }
+		public virtual ISet<IWebsite> Websites { get; set; }
+		public virtual ISet<ISetupStep> SetupSteps { get; set; }
 	}
 }

@@ -15,5 +15,21 @@
 		<property name="UpdatedAt">
 			<column name="UpdatedAt" sql-type="datetime" not-null="true" />
 		</property>
+		<property name="Name">
+			<column name="Name" sql-type="string"/>
+		</property>
+		<property name="Version">
+			<column name="Version" sql-type="string"/>
+		</property>
+		<property name="IsActive">
+			<column name="IsActive" sql-type="bit" />
+		</property>
+		<property name="SearchPath">
+			<column name="SearchPath" sql-type="string"/>
+		</property>
+		<property name="SearchPattern">
+			<column name="SearchPattern" sql-type="string"/>
+		</property>
+		
 	</class>
 </hibernate-mapping>

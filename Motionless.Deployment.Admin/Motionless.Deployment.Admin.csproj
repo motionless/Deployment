@@ -156,6 +156,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\PackageConfigurationController.cs" />
     <Compile Include="Controllers\WebsiteController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
@@ -168,6 +169,8 @@
     </Compile>
     <Compile Include="Models\ApplicationPoolViewModel.cs" />
     <Compile Include="Models\BindingViewModel.cs" />
+    <Compile Include="Models\PackageConfigurationListViewModel.cs" />
+    <Compile Include="Models\PackageConfigurationViewModel.cs" />
     <Compile Include="Models\WebsiteListViewModel.cs" />
     <Compile Include="Models\PackageListViewModel.cs" />
     <Compile Include="Models\ServerListViewModel.cs" />
@@ -183,6 +186,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\AutoMapCreator.cs" />
     <Compile Include="Utilities\MEF\MefControllerFactory.cs" />
+    <Compile Include="Utilities\ModelBinder\VersionModelBinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -256,6 +260,12 @@
     <Content Include="Views\Website\EditorTemplates\WebsiteViewModel.cshtml" />
     <Content Include="Views\Website\Index.cshtml" />
     <Content Include="Views\shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\PackageConfiguration\Create.cshtml" />
+    <Content Include="Views\PackageConfiguration\Details.cshtml" />
+    <Content Include="Views\PackageConfiguration\Edit.cshtml" />
+    <Content Include="Views\PackageConfiguration\EditorTemplates\PackageConfigurationViewModel.cshtml" />
+    <Content Include="Views\PackageConfiguration\Index.cshtml" />
+    <Content Include="Views\shared\EditorTemplates\Version.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

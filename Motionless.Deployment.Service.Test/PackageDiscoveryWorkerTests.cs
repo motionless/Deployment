@@ -25,7 +25,10 @@ namespace Motionless.Deployment.Service.Test
 		public void DiscoverNewPackages()
 		{
 			var discovery = new PackageDiscoveryWorker();
-			discovery.ProcessPackageConfigurations();
+			using (var pc = PersistenceHelper.CreatePersistenceContext())
+			{
+				discovery.ProcessPackageConfigurations();
+			}
 		}
 	}
 }

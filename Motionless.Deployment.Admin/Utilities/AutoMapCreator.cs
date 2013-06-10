@@ -22,6 +22,7 @@ namespace Motionless.Deployment.Admin.Utilities
 			mapper.CreateMap<IBinding, BindingViewModel>().MaxDepth(1);
 			mapper.CreateMap<IVirtualDirectory, VirtualDirectoryViewModel>().MaxDepth(1);
 			mapper.CreateMap<ISetupStep, SetupStepViewModel>().MaxDepth(1);
+			mapper.CreateMap<IPackageConfiguration, PackageConfigurationViewModel>().MaxDepth(1);
 		}
 	}
 }

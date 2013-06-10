@@ -24,5 +24,9 @@
 			<key column="ID_Product" />
 			<one-to-many class="Package"/>
 		</set>
+		<set name="PackageConfigurations">
+			<key column="ID_Product"/>
+			<one-to-many class="PackageConfiguration"/>
+		</set>
 	</class>
 </hibernate-mapping>

@@ -20,6 +20,11 @@
 			<mvcSiteMapNode title="Create Server" action="Create" />
 			<mvcSiteMapNode title="Edit Server" action="Edit" />
 		</mvcSiteMapNode>
+		<mvcSiteMapNode title="Package Configurations" controller="PackageConfiguration">
+			<mvcSiteMapNode title="List Package Configurations" action="Index" />
+			<mvcSiteMapNode title="Create Package Configuration" action="Create" />
+			<mvcSiteMapNode title="Edit Package Configuration" action="Edit" />
+		</mvcSiteMapNode>
 		<mvcSiteMapNode title="Package" controller="Package">
 			<mvcSiteMapNode title="List Packages" action="Index" />
 			<mvcSiteMapNode title="Create Package" action="Create" />
