@@ -56,7 +56,7 @@ namespace Motionless.Deployment.Services.Test
 
 				pc.AfterCommitActions.Add(() => Console.WriteLine("Hello Wolrd! ({0})",product.Id));
 
-				service.Create(product);
+				service.CreateOrUpdate(product);
 			}
 		}
 	}

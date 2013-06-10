@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Motionless.Data.Persistence
 {
-	public class SortProperties<T> : Dictionary<Func<BaseObject<T>, IComparable>, SortOrder> where T : BaseObject<T>
+	public class SortProperties<T> : Dictionary<Func<IBaseObject, IComparable>, SortOrder> where T : BaseObject<T>
 	{
 	}
 }
