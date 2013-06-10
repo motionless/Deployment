@@ -8,5 +8,6 @@ namespace Motionless.Deployment.Contracts.Data.Model
 		string Name { get; set; }
 		ISet<IEnvironment> Environments { get; set; }
 		ISet<IPackage> Packages { get; set; }
+		ISet<IPackageConfiguration> PackageConfigurations { get; set; }
 	}
 }

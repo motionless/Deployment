@@ -14,6 +14,8 @@ namespace Motionless.Deployment.Data.Model
 		}
 		public virtual string Name { get; set; }
 		public virtual ISet<IEnvironment> Environments { get; set; }
+
 		public virtual ISet<IPackage> Packages { get; set; }
+		public virtual ISet<IPackageConfiguration> PackageConfigurations { get; set; }
 	}
 }

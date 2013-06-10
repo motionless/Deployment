@@ -55,6 +55,7 @@
     <Compile Include="ApplicationPoolService.cs" />
     <Compile Include="AutoMapCreator.cs" />
     <Compile Include="BindingService.cs" />
+    <Compile Include="PackageConfigurationService.cs" />
     <Compile Include="VirtualDirectoryService.cs" />
     <Compile Include="WebsiteService.cs" />
     <Compile Include="SetupStepService.cs" />
