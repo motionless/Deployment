@@ -30,6 +30,8 @@
 		<property name="SearchPattern">
 			<column name="SearchPattern" sql-type="string"/>
 		</property>
-		
+		<many-to-one name="Product" class="Product">
+			<column name="ID_Product" sql-type="bigint" not-null="true"/>
+		</many-to-one>
 	</class>
 </hibernate-mapping>

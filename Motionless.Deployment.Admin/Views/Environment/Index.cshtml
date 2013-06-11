@@ -21,7 +21,7 @@
  {
 		<tr>
 			<td>@environment.Id</td>
-			<td>@environment.Name</td>
+			<td>@environment.Product.Name - @environment.Name</td>
 			<td>@environment.CreatedAt</td>
 		    <td>@environment.UpdatedAt</td>
 			<td>@Html.ActionLink("Edit","Edit",new {environment.Id, page = Model.Environments.PageNumber},new {@class="btn"})</td>

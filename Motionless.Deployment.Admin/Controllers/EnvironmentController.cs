@@ -60,7 +60,10 @@ namespace Motionless.Deployment.Admin.Controllers
 			{
 				var viewModel = AutoMapper.Mapper.Map<IEnvironment, EnvironmentViewModel>(EnvironmentService.GetById(id.Value));
 				viewModel.Products = ProductService.GetAll().ToList();
-				viewModel.SelectedProductId = viewModel.Product.Id;
+				if (viewModel.Product != null)
+				{
+					viewModel.SelectedProductId = viewModel.Product.Id;
+				}
 
 				return View(viewModel);
 			}

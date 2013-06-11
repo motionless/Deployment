@@ -4,7 +4,7 @@
 </script>
 
 <fieldset>
-	<legend>Product <button type="submit" class="btn btn-primary pull-right">Create</button></legend>
+	<legend>Product <button type="submit" class="btn btn-primary pull-right">@this.ViewContext.RouteData.GetRequiredString("action")</button></legend>
 	@if (!ViewData.ModelState.IsValid)
  {@Html.ValidationSummary(null, new { @class = "alert alert-error" })}
 
@@ -42,65 +42,65 @@
 		</div>
 	</div>
 
-	@if (Model.Environments.Any())
+	@if (Model.Environments != null && Model.Environments.Any())
  {
 		<div class="control-group">
 			<h4>Environments</h4>
 			<table class="table table-striped">
 				<tr>
 					<th>Name</th>
-					<th>Edit</th>
+					<th class="span1">Edit</th>
 				</tr>
 				@foreach (var environment in Model.Environments)
 	{
 					<tr>
 						<td>@Html.DisplayFor(m => environment.Name)</td>
-						<td>@Html.ActionLink("Edit", "Edit", "Environment", new { Id = environment.Id }, new { @class = "btn btn-small" })</td>
+						<td class="span1">@Html.ActionLink("Edit", "Edit", "Environment", new { Id = environment.Id }, new { @class = "btn btn-small" })</td>
 					</tr>
 	}
 			</table>
 		</div>
  }
 	
-	@if (Model.PackageConfigurations.Any())
+	@if (Model.PackageConfigurations != null && Model.PackageConfigurations.Any())
  {
 		<h4>Package Configurations</h4>
 		<table class="table table-striped">
 			<tr>
 				<th>Name</th>
-				<th>Edit</th>
+				<th class="span1">Edit</th>
 			</tr>
 			@foreach (var packageConfiguration in Model.PackageConfigurations)
    {
 				<tr>
 					<td>@Html.DisplayFor(m => packageConfiguration.Name)</td>
-					<td>@Html.ActionLink("Edit", "Edit", "PackageConfiguration", new { Id = packageConfiguration.Id }, new { @class = "btn btn-small" })</td>
+					<td class="span1">@Html.ActionLink("Edit", "Edit", "PackageConfiguration", new { Id = packageConfiguration.Id }, new { @class = "btn btn-small" })</td>
 				</tr>
    }
 		</table>
  }
 
-	@if (Model.Packages.Any())
+	@if (Model.Packages != null && Model.Packages.Any())
  {
 		<h4>Packages</h4>
-		<table class="table table-striped">
-			<tr>
-				<th>Name</th>
-				<th>Edit</th>
-			</tr>
-			@foreach (var package in Model.Packages)
-   {
-				<tr>
-					<td>@Html.DisplayFor(m => package.Name)</td>
-					<td>@Html.ActionLink("Edit", "Edit", "Package", new { Id = package.Id }, new { @class = "btn btn-small" })</td>
-				</tr>
-   }
-		</table>
+	 <table class="table table-striped">
+		 <tr>
+			 <th>Name</th>
+			 <th class="span1">Edit</th>
+		 </tr>
+		 @foreach (var package in Model.Packages)
+		 {
+			 <tr>
+				 <td>@Html.DisplayFor(m => package.Name)</td>
+				 <td class="span1">@Html.ActionLink("Edit", "Edit", "Package", new { Id = package.Id }, new { @class = "btn btn-small" })</td>
+			 </tr>
+		 }
+	 </table>
  }
 	<hr />
 	<div class="control-group">
 		<div class="controls">
-			<button type="submit" class="btn btn-primary pull-right">Create</button>
+			<button type="submit" class="btn btn-primary pull-right">@this.ViewContext.RouteData.GetRequiredString("action")</button>
 		</div>
 	</div>
 

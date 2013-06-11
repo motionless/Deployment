@@ -56,6 +56,15 @@
 			@Html.ValidationMessageFor(model => model.Version)
 		</div>
 	</div>
+	
+	<div class="control-group">
+		@Html.LabelFor(model => model.Product, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.DropDownListFor(model => model.SelectedProductId, Model.ProductsSelectList )
+			@Html.ValidationMessageFor(model => model.Product)
+		</div>
+	</div>
 	@*<div class="control-group">
 		@Html.LabelFor(model => model.CreatedAt, new { @class = "control-label" })
 

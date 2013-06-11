@@ -16,15 +16,15 @@
 			<column name="UpdatedAt" sql-type="datetime" not-null="true" />
 		</property>
 		<property name="Name" />
-		<set name="Environments">
+		<set name="Environments" inverse="true">
 			<key column="ID_Product" />
 			<one-to-many class="Environment"/>
 		</set>
-		<set name="Packages">
+		<set name="Packages" inverse="true">
 			<key column="ID_Product" />
 			<one-to-many class="Package"/>
 		</set>
-		<set name="PackageConfigurations">
+		<set name="PackageConfigurations" inverse="true">
 			<key column="ID_Product"/>
 			<one-to-many class="PackageConfiguration"/>
 		</set>
