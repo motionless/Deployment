@@ -55,7 +55,23 @@
 			@Html.ValidationMessageFor(model => model.UpdatedAt)
 		</div>
 	</div>*@
-
+		@if (Model.Servers != null && Model.Servers.Any())
+ {
+		<h4>Servers</h4>
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th class="span1">Edit</th>
+			</tr>
+			@foreach (var server in Model.Servers)
+   {
+				<tr>
+					<td>@Html.DisplayFor(m => server.Name)</td>
+					<td class="span1">@Html.ActionLink("Edit", "Edit", "PackageConfiguration", new { Id = server.Id }, new { @class = "btn btn-small" })</td>
+				</tr>
+   }
+		</table>
+ }
 	<div class="control-group">
 		<div class="controls">
 			<button type="submit" class="btn">@Request.RequestContext.RouteData.Values["Action"]</button>
