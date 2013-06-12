@@ -22,5 +22,9 @@
 			<column name="ID_Product" sql-type="bigint" not-null="true"/>
 		</many-to-one>
 
+		<set name="Servers" inverse="true" lazy="true">
+			<key column="Id_Environment"/>
+			<many-to-many class="Server" column="Id_Server" />
+		</set>
 	</class>
 </hibernate-mapping>

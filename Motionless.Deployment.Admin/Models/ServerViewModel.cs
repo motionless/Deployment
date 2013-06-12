@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Motionless.Deployment.Admin.Extensions;
 using Motionless.Deployment.Contracts.Data.Model;
 
 namespace Motionless.Deployment.Admin.Models
@@ -21,17 +22,17 @@ namespace Motionless.Deployment.Admin.Models
 		public List<long> SelectedEnvironmentIds { get; set; }
 
 		
-		public ISet<IEnvironment> SelectableEnvironments { get; set; }
+		public List<IEnvironment> SelectableEnvironments { get; set; }
 		public MultiSelectList EnvironmentsSelectList
 		{
 			get
 			{
-				var listItems = SelectableEnvironments.Select(p => new SelectListItem() { Text = p.Name, Value = p.Id.ToString() }).ToList();
+				var listItems = SelectableEnvironments.Select(p => new SelectListItem() { Text = p.DisplayName(), Value = p.Id.ToString() }).ToList();
 
-				return new SelectList(listItems,
+				return new MultiSelectList(listItems,
 										"Value",
 										"Text",
-										/*Product != null ? Product.Id : 0*/0);
+										Environments != null ? Environments.Select(env => env.Id): null);
 			}
 		}
 

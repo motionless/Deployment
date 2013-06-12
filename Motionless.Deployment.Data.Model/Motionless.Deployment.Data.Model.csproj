@@ -62,7 +62,9 @@
     <EmbeddedResource Include="ApplicationPool.hbm.xml" />
     <EmbeddedResource Include="Binding.hbm.xml" />
     <EmbeddedResource Include="Configuration.hbm.xml" />
-    <EmbeddedResource Include="Environment.hbm.xml" />
+    <EmbeddedResource Include="Environment.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Package.hbm.xml" />
@@ -71,7 +73,9 @@
     <EmbeddedResource Include="Product.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Server.hbm.xml" />
+    <EmbeddedResource Include="Server.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SetupStep.hbm.xml" />

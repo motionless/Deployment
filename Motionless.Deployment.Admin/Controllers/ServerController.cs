@@ -32,7 +32,9 @@ namespace Motionless.Deployment.Admin.Controllers
 
 		public ActionResult Create()
 		{
-			return View(new ServerViewModel());
+			var viewModel = new ServerViewModel();
+			viewModel.SelectableEnvironments = EnvironmentService.GetAll().ToList();
+			return View(viewModel);
 		}
 
 		[HttpPost]
@@ -41,9 +43,11 @@ namespace Motionless.Deployment.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				var server = AutoMapper.Mapper.Map<ServerViewModel, IServer>(viewModel);
+				server.Environments = PopulateEnvironments(viewModel, server);
 				ServerService.CreateOrUpdate(server);				
 				return RedirectToAction("Index");
 			}
+			viewModel.SelectableEnvironments = EnvironmentService.GetAll().ToList();
 			return View(viewModel);
 		}
 
@@ -51,7 +55,10 @@ namespace Motionless.Deployment.Admin.Controllers
 		{
 			if (id.HasValue)
 			{
-				return View(AutoMapper.Mapper.Map<IServer,ServerViewModel>(ServerService.GetById(id.Value)));
+				var viewModel = AutoMapper.Mapper.Map<IServer, ServerViewModel>(ServerService.GetById(id.Value));
+				viewModel.SelectableEnvironments = EnvironmentService.GetAll().ToList();
+
+				return View(viewModel);
 			}
 			return RedirectToAction("Create");
 		}
@@ -61,14 +68,33 @@ namespace Motionless.Deployment.Admin.Controllers
 		{
 			try
 			{
-				var server = AutoMapper.Mapper.Map<ServerViewModel, IServer>(viewModel);
+				IServer server = AutoMapper.Mapper.Map<ServerViewModel, IServer>(viewModel);
+				
+				server.Environments = PopulateEnvironments(viewModel, server);
+
 				ServerService.CreateOrUpdate(server);
+
+				
+
+
 				return RedirectToAction("Index",new {page});
 			}
 			catch
 			{
+				viewModel.SelectableEnvironments = EnvironmentService.GetAll().ToList();
 				return View(viewModel);
 			}
+		}
+
+		private HashSet<IEnvironment> PopulateEnvironments(ServerViewModel viewModel, IServer server)
+		{
+			var environments = new HashSet<IEnvironment>();
+			foreach (long selectedEnvironmentId in viewModel.SelectedEnvironmentIds)
+			{
+				environments.Add(EnvironmentService.GetById(selectedEnvironmentId));
+			}
+			server.Environments = environments;
+			return environments;
 		}
 
 		public ActionResult Delete(int id, int? page)

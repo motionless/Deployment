@@ -1,6 +1,6 @@
 ﻿@model Motionless.Deployment.Admin.Models.ServerViewModel
 <fieldset>
-	<legend>Product</legend>
+	<legend>Product <button type="submit" class="btn btn-primary pull-right">@this.ViewContext.RouteData.GetRequiredString("action")</button></legend>
 	@if(!ViewData.ModelState.IsValid){@Html.ValidationSummary(null,new {@class="alert alert-error"})}
 	@Html.HiddenFor(m => m.Id)
 	<div class="control-group">
@@ -17,6 +17,14 @@
 		<div class="controls">
 			@Html.EditorFor(model => model.IsDeleted)
 			@Html.ValidationMessageFor(model => model.IsDeleted)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.Environments, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.ListBoxFor(model => model.SelectedEnvironmentIds,Model.EnvironmentsSelectList,new {@class ="span5"})
+			@Html.ValidationMessageFor(model => model.Environments)
 		</div>
 	</div>
 	@*<div class="control-group">
@@ -38,7 +46,7 @@
 
 	<div class="control-group">
 		<div class="controls">
-			<button type="submit" class="btn">Create</button>
+			<button type="submit" class="btn btn-primary pull-right">@this.ViewContext.RouteData.GetRequiredString("action")</button>
 		</div>
 	</div>
 

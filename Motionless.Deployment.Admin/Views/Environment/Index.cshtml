@@ -1,4 +1,5 @@
 ﻿@model Motionless.Deployment.Admin.Models.EnvironmentListViewModel
+@using Motionless.Deployment.Contracts.Data.Model
 @using Motionless.Deployment.Data.Model
 @using PagedList
 @using PagedList.Mvc
@@ -17,7 +18,7 @@
 		<th>Edit</th>
 		<th>Delete</th>
 	</thead>
-	@foreach (Motionless.Deployment.Data.Model.Environment environment in Model.Environments)
+	@foreach (IEnvironment environment in Model.Environments)
  {
 		<tr>
 			<td>@environment.Id</td>
