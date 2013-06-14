@@ -1,4 +1,5 @@
 ﻿@model Motionless.Deployment.Admin.Models.PackageConfigurationListViewModel
+@using Motionless.Deployment.Admin.Extensions
 @using Motionless.Deployment.Data.Model
 @using PagedList
 @using PagedList.Mvc
@@ -17,15 +18,15 @@
 	    <th>Edit</th>
         <th>Delete</th>
 	</thead>
-	@foreach (var package in Model.PackageConfigurations)
+	@foreach (var packageConfiguration in Model.PackageConfigurations)
  {
 		<tr>
-			<td>@package.Id</td>
-			<td>@package.Name</td>
-			<td>@package.CreatedAt</td>
-		    <td>@package.UpdatedAt</td>
-		    <td>@Html.ActionLink("Edit","Edit",new {@package.Id, page = Model.PackageConfigurations.PageNumber},new {@class="btn"})</td>
-            <td>@Html.ActionLink("Delete","Delete",new {@package.Id, page = Model.PackageConfigurations.PageNumber},new {@class="btn btn-danger"})</td>
+			<td>@packageConfiguration.Id</td>
+			<td>@packageConfiguration.DisplayName()</td>
+			<td>@packageConfiguration.CreatedAt</td>
+		    <td>@packageConfiguration.UpdatedAt</td>
+		    <td>@Html.ActionLink("Edit","Edit",new {packageConfiguration.Id, page = Model.PackageConfigurations.PageNumber},new {@class="btn"})</td>
+            <td>@Html.ActionLink("Delete","Delete",new {packageConfiguration.Id, page = Model.PackageConfigurations.PageNumber},new {@class="btn btn-danger"})</td>
 		</tr>
  }
 </table>

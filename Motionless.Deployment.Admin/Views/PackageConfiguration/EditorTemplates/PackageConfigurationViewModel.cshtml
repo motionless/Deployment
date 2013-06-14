@@ -1,10 +1,6 @@
 ﻿@model Motionless.Deployment.Admin.Models.PackageConfigurationViewModel
-<script type="text/javascript">
-	
-</script>
-
 <fieldset>
-	<legend>Product</legend>
+	<legend>Package Configuration @Html.Raw(@Model.Product != null ? string.Format("of {0}", Model.Product.Name) : string.Empty)</legend>
 	@if(!ViewData.ModelState.IsValid){@Html.ValidationSummary(null,new {@class="alert alert-error"})}
 	
 	@Html.HiddenFor(m => m.Id)
@@ -65,22 +61,23 @@
 			@Html.ValidationMessageFor(model => model.Product)
 		</div>
 	</div>
-	@*<div class="control-group">
-		@Html.LabelFor(model => model.CreatedAt, new { @class = "control-label" })
-
-		<div class="controls">
-			@Html.EditorFor(model => model.CreatedAt)
-			@Html.ValidationMessageFor(model => model.CreatedAt)
-		</div>
-	</div>
-	<div class="control-group">
-		@Html.LabelFor(model => model.UpdatedAt, new { @class = "control-label" })
-
-		<div class="controls">
-			@Html.EditorFor(model => model.UpdatedAt)
-			@Html.ValidationMessageFor(model => model.UpdatedAt)
-		</div>
-	</div>*@
+	@if (Model.Packages != null && Model.Packages.Any())
+ {
+		<h4>Servers</h4>
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th class="span1">Edit</th>
+			</tr>
+			@foreach (var package in Model.Packages)
+   {
+				<tr>
+					<td>@Html.DisplayFor(m => package.Name)</td>
+					<td class="span1">@Html.ActionLink("Edit", "Edit", "Package", new { Id = package.Id }, new { @class = "btn btn-small" })</td>
+				</tr>
+   }
+		</table>
+ }
 
 	<div class="control-group">
 		<div class="controls">

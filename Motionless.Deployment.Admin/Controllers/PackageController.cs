@@ -44,7 +44,9 @@ namespace Motionless.Deployment.Admin.Controllers
 		/// <returns></returns>
 		public ActionResult Create()
 		{
-			return View(new PackageViewModel());
+			var viewModel = new PackageViewModel();
+			viewModel.Products = ProductService.GetAll().ToList();
+			return View(viewModel);
 		}
 
 		/// <summary>
@@ -58,6 +60,11 @@ namespace Motionless.Deployment.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				var package = AutoMapper.Mapper.Map<PackageViewModel, IPackage>(viewModel);
+				if (viewModel != null && viewModel.SelectedProductId > 0)
+				{
+					package.Product = ProductService.GetById(viewModel.SelectedProductId);
+				}
+
 				PackageService.CreateOrUpdate(package);
 			}
 			else
@@ -66,7 +73,6 @@ namespace Motionless.Deployment.Admin.Controllers
 			}
 
 			return RedirectToAction("Index");
-
 		}
 
 		/// <summary>
@@ -79,7 +85,13 @@ namespace Motionless.Deployment.Admin.Controllers
 			if (id.HasValue)
 			{
 				var package = PackageService.GetById(id.Value);
-				return View(AutoMapper.Mapper.Map<IPackage, PackageViewModel>(package));
+				var viewModel = AutoMapper.Mapper.Map<IPackage, PackageViewModel>(package);
+				viewModel.Products = ProductService.GetAll().ToList();
+				if (viewModel.Product != null)
+				{
+					viewModel.SelectedProductId = viewModel.Product.Id;
+				}
+				return View(viewModel);
 			}
 			return RedirectToAction("Create");
 		}
@@ -98,10 +110,15 @@ namespace Motionless.Deployment.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				var package = AutoMapper.Mapper.Map<PackageViewModel, IPackage>(viewModel);
+				if (viewModel != null && viewModel.SelectedProductId > 0)
+				{
+					package.Product = ProductService.GetById(viewModel.SelectedProductId);
+				}
 				PackageService.CreateOrUpdate(package);
-				return RedirectToAction("Index",new {page});
+				return RedirectToAction("Index", new { page });
 			}
 			return View(viewModel);
+
 		}
 
 		/// <summary>

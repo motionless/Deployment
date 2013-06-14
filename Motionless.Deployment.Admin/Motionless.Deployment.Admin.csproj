@@ -15,7 +15,7 @@
     <AssemblyName>Motionless.Deployment.Admin</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -163,6 +163,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ServerController.cs" />
+    <Compile Include="Extensions\PackageConfigurationExtensions.cs" />
     <Compile Include="Extensions\EnvironmentExtensions.cs" />
     <Compile Include="Filters\PersistenceContextFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -316,7 +317,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55917</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55917/</IISUrl>
+          <IISUrl>http://localhost/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -18,7 +18,7 @@
 		<property name="Name">
 			<column name="Name" not-null="false" sql-type="String" />
 		</property>
-		<set name="Environments" inverse="false" lazy="true">
+		<set name="Environments" table="ServersEnvironments" lazy="true">
 			<key column="Id_Server" />
 			<many-to-many class="Environment" column="Id_Environment" />
 		</set>
