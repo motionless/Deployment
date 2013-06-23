@@ -24,6 +24,8 @@ namespace Motionless.Deployment.Data.Model
 
 		public virtual IProduct Product { get; set; }
 
+		public virtual IPackageConfiguration PackageConfiguration { get; set; }
+
 		public virtual ISet<ISetupStep> SetupSteps { get; set; }
 
 	}

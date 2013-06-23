@@ -46,6 +46,7 @@ namespace Motionless.Deployment.Admin.Controllers
 		{
 			var viewModel = new PackageViewModel();
 			viewModel.Products = ProductService.GetAll().ToList();
+			viewModel.PackageConfigurations = PackageConfigurationService.GetAll().ToList();
 			return View(viewModel);
 		}
 
@@ -60,9 +61,13 @@ namespace Motionless.Deployment.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				var package = AutoMapper.Mapper.Map<PackageViewModel, IPackage>(viewModel);
-				if (viewModel != null && viewModel.SelectedProductId > 0)
+				if (viewModel.SelectedProductId > 0)
 				{
 					package.Product = ProductService.GetById(viewModel.SelectedProductId);
+				}
+				if (viewModel.SelectedPackageConfigurationId > 0)
+				{
+					package.PackageConfiguration = PackageConfigurationService.GetById(viewModel.SelectedPackageConfigurationId);
 				}
 
 				PackageService.CreateOrUpdate(package);
@@ -87,9 +92,11 @@ namespace Motionless.Deployment.Admin.Controllers
 				var package = PackageService.GetById(id.Value);
 				var viewModel = AutoMapper.Mapper.Map<IPackage, PackageViewModel>(package);
 				viewModel.Products = ProductService.GetAll().ToList();
+				viewModel.PackageConfigurations = PackageConfigurationService.GetAll().ToList();
 				if (viewModel.Product != null)
 				{
 					viewModel.SelectedProductId = viewModel.Product.Id;
+					viewModel.SelectedPackageConfigurationId= viewModel.PackageConfiguration.Id;
 				}
 				return View(viewModel);
 			}
@@ -107,12 +114,19 @@ namespace Motionless.Deployment.Admin.Controllers
 		[HttpPost]
 		public ActionResult Edit(PackageViewModel viewModel, int? page)
 		{
-			if (ModelState.IsValid)
+			if (ModelState.IsValid && viewModel.SelectedProductId > 0 && viewModel.SelectedPackageConfigurationId > 0)
 			{
 				var package = AutoMapper.Mapper.Map<PackageViewModel, IPackage>(viewModel);
-				if (viewModel != null && viewModel.SelectedProductId > 0)
+				if (viewModel != null)
 				{
-					package.Product = ProductService.GetById(viewModel.SelectedProductId);
+					if (viewModel.SelectedProductId > 0)
+					{
+						package.Product = ProductService.GetById(viewModel.SelectedProductId);
+					}
+					if (viewModel.SelectedPackageConfigurationId > 0)
+					{
+						package.PackageConfiguration = PackageConfigurationService.GetById(viewModel.SelectedPackageConfigurationId);
+					}
 				}
 				PackageService.CreateOrUpdate(package);
 				return RedirectToAction("Index", new { page });

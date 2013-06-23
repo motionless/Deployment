@@ -34,6 +34,9 @@ namespace Motionless.Deployment.Admin.Controllers
 		public IWebsiteService WebsiteService { get; set; }
 
 		[Import(typeof(IPackageConfigurationService))]
-		public PackageConfigurationService PackageConfigurationService { get; set; }
+		public IPackageConfigurationService PackageConfigurationService { get; set; }
+
+		[Import(typeof(IApplicationPoolService))]
+		public IApplicationPoolService ApplicationPoolService { get; set; }
     }
 }

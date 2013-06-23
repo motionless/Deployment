@@ -116,9 +116,19 @@ namespace Motionless.Data.Persistence
 
 			if (Transaction != null)
 			{
+
 				if (!Commits.Contains(false))
 				{
-					session.Transaction.Commit();
+					try
+					{
+						session.Transaction.Commit();
+					}
+					catch (Exception exception)
+					{
+						// write the exception to a log file or mail, but continue context disposal
+						//throw;
+					}
+					
 				}
 				else
 				{

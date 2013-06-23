@@ -10,5 +10,7 @@ namespace Motionless.Deployment.Contracts.Data.Model
 		string PhysicalPath { get; set; }
 		ISet<IBinding> Bindings { get; set; }
 		ISet<IVirtualDirectory> VirtualDirectories { get; set; }
+
+		IPackageConfiguration PackageConfiguration { get; set; }
 	}
 }

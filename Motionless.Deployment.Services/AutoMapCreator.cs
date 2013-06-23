@@ -24,6 +24,7 @@ namespace Motionless.Deployment.Services
 			mapper.CreateMap<ISetupStep, SetupStep>();
 			mapper.CreateMap<IVirtualDirectory, VirtualDirectory>();
 			mapper.CreateMap<IPackageConfiguration, PackageConfiguration>();
+			mapper.CreateMap<IWebsite, Website>();
 		}
 	}
 }

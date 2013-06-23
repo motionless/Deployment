@@ -22,5 +22,7 @@ namespace Motionless.Deployment.Data.Model
 
 		public virtual ISet<IVirtualDirectory> VirtualDirectories { get; set; }
 
+		public virtual IPackageConfiguration PackageConfiguration { get; set; }
+
 	}
 }

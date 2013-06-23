@@ -1,0 +1,50 @@
+﻿@model Motionless.Deployment.Admin.Models.ApplicationPoolViewModel
+<div class="subclass">
+	<span class="subclassName">Application Pool</span>
+	@Html.Partial("EditorTemplates/BaseObject", Model)
+	<div class="control-group">
+		@Html.LabelFor(model => model.Name, new { @class = "control-label" })
+		<div class="controls">
+			@Html.EditorFor(model => model.Name)
+			@Html.ValidationMessageFor(model => model.Name)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.IdleTimeout, new { @class = "control-label" })
+		<div class="controls">
+			@Html.EditorFor(model => model.IdleTimeout)
+			@Html.ValidationMessageFor(model => model.IdleTimeout)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.MaxProcesses, new { @class = "control-label" })
+		<div class="controls">
+			@Html.EditorFor(model => model.MaxProcesses)
+			@Html.ValidationMessageFor(model => model.MaxProcesses)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.ManagedRuntimeVersion, new { @class = "control-label" })
+		<div class="controls">
+			@Html.EditorFor(model => model.ManagedRuntimeVersion)
+			@Html.ValidationMessageFor(model => model.ManagedRuntimeVersion)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.Identity, new { @class = "control-label" })
+		<div class="controls">
+			@Html.EditorFor(model => model.Identity)
+			@Html.ValidationMessageFor(model => model.Identity)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.Enable32BitAppOnWin64, new { @class = "control-label" })
+		<div class="controls">
+			@Html.EditorFor(model => model.Enable32BitAppOnWin64)
+			@Html.ValidationMessageFor(model => model.Enable32BitAppOnWin64)
+		</div>
+	</div>
+	
+	
+
+</div>

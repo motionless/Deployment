@@ -15,5 +15,28 @@
 		<property name="UpdatedAt">
 			<column name="UpdatedAt" sql-type="datetime" not-null="true" />
 		</property>
+		<property name="Name">
+			<column name="Name" not-null="true" />
+		</property>
+		<property name="PhysicalPath">
+			<column name="PhysicalPath" not-null="true" />
+		</property>
+		
+
+		<many-to-one name="PackageConfiguration" class="PackageConfiguration">
+			<column name="ID_PackageConfiguration" sql-type="bigint" not-null="true"/>
+		</many-to-one>
+		<many-to-one name="ApplicationPool" class="ApplicationPool">
+			<column name="ID_ApplicationPool" sql-type="bigint" not-null="true"/>
+		</many-to-one>
+
+		<set name="Bindings" table="WebsiteBindings" inverse="true" lazy="true">
+			<key column="ID_Website"/>
+			<one-to-many class="Binding"/>
+		</set>
+		<set name="VirtualDirectories" table="WebsiteVirtualDirectories" inverse="true" lazy="true">
+			<key column="ID_Website"/>
+			<one-to-many class="VirtualDirectory"/>
+		</set>
 	</class>
 </hibernate-mapping>

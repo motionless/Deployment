@@ -1,4 +1,6 @@
 ﻿@model System.Version
-@Html.EditorFor(m => m.Major)
-@Html.EditorFor(m => m.Minor)
-@Html.EditorFor(m => m.Build)
+<div class="version">
+	@Html.EditorFor(m => m.Major)
+	@Html.EditorFor(m => m.Minor)
+	@Html.EditorFor(m => m.Build)
+</div>

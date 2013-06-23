@@ -32,7 +32,10 @@ namespace Motionless.Deployment.Admin.Controllers
 
 		public ActionResult Create()
 		{
-			return View(new WebsiteViewModel());
+			var viewModel = new WebsiteViewModel();
+			viewModel.PackageConfigurations = PackageConfigurationService.GetAll().ToList();
+
+			return View(viewModel);
 		}
 
 		[HttpPost]
@@ -41,17 +44,42 @@ namespace Motionless.Deployment.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				var website = AutoMapper.Mapper.Map<WebsiteViewModel, IWebsite>(viewModel);
+				if (viewModel.SelectedPackageConfigurationId > 0)
+				{
+					website.PackageConfiguration = PackageConfigurationService.GetById(viewModel.SelectedPackageConfigurationId);
+
+					var appPool =AutoMapper.Mapper.Map<ApplicationPoolViewModel, IApplicationPool>(viewModel.ApplicationPool as ApplicationPoolViewModel);
+					
+					website.ApplicationPool = ApplicationPoolService.CreateOrUpdate(appPool);
+				}
+
 				WebsiteService.CreateOrUpdate(website);				
-				return RedirectToAction("Index");
 			}
-			return View(viewModel);
+			else
+			{
+				viewModel.PackageConfigurations = PackageConfigurationService.GetAll().ToList();
+				return View(viewModel);
+			}
+			return RedirectToAction("Index");
+			
 		}
 
 		public ActionResult Edit(int? id, int? page)
 		{
 			if (id.HasValue)
 			{
-				return View(AutoMapper.Mapper.Map<IWebsite, WebsiteViewModel>(WebsiteService.GetById(id.Value)));
+				var viewModel = AutoMapper.Mapper.Map<IWebsite, WebsiteViewModel>(WebsiteService.GetById(id.Value));
+				viewModel.PackageConfigurations = PackageConfigurationService.GetAll().ToList();
+				if (viewModel.ApplicationPool == null)
+				{
+					viewModel.ApplicationPool = new ApplicationPoolViewModel();
+				}
+				else
+				{
+					viewModel.ApplicationPool = AutoMapper.Mapper.Map<IApplicationPool, ApplicationPoolViewModel>(viewModel.ApplicationPool);
+				}
+
+				return View(viewModel);
 			}
 			return RedirectToAction("Create");
 		}
@@ -59,16 +87,26 @@ namespace Motionless.Deployment.Admin.Controllers
 		[HttpPost]
 		public ActionResult Edit(WebsiteViewModel viewModel, int? page)
 		{
-			try
+			if (ModelState.IsValid)
 			{
 				var website = AutoMapper.Mapper.Map<WebsiteViewModel, IWebsite>(viewModel);
+				if (viewModel.SelectedPackageConfigurationId > 0)
+				{
+					website.PackageConfiguration = PackageConfigurationService.GetById(viewModel.SelectedPackageConfigurationId);
+
+					var appPool = AutoMapper.Mapper.Map<ApplicationPoolViewModel, IApplicationPool>(viewModel.ApplicationPool as ApplicationPoolViewModel);
+
+					website.ApplicationPool = ApplicationPoolService.CreateOrUpdate(appPool);
+				}
 				WebsiteService.CreateOrUpdate(website);
-				return RedirectToAction("Index",new {page});
 			}
-			catch
+			else
 			{
+				viewModel.PackageConfigurations = PackageConfigurationService.GetAll().ToList();
 				return View(viewModel);
 			}
+
+			return RedirectToAction("Index");
 		}
 
 		public ActionResult Delete(int id, int? page)

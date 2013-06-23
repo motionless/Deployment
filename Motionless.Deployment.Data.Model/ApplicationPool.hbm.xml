@@ -15,5 +15,29 @@
 		<property name="UpdatedAt">
 			<column name="UpdatedAt" sql-type="datetime" not-null="true" />
 		</property>
+		<property name="Name">
+			<column name="Name"/>
+		</property>
+		<property name="ManagedRuntimeVersion">
+			<column name="ManagedRuntimeVersion"/>
+		</property>
+		<property name="Identity">
+			<column name="Identity"/>
+		</property>
+		<property name="IdentityPassword">
+			<column name="IdentityPassword"/>
+		</property>
+		<property name="Enable32BitAppOnWin64">
+			<column name="Enable32BitAppOnWin64"/>
+		</property>
+		<property name="IdleTimeout">
+			<column name="IdleTimeout"/>
+		</property>
+		<property name="PeriodicRestartTime">
+			<column name="PeriodicRestartTime"/>
+		</property>
+		<property name="MaxProcesses">
+			<column name="MaxProcesses"/>
+		</property>	
 	</class>
 </hibernate-mapping>

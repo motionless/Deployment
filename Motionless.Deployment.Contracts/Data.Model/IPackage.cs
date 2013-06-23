@@ -12,5 +12,6 @@ namespace Motionless.Deployment.Contracts.Data.Model
 		ISet<IWebsite> Websites { get; set; }
 		IProduct Product { get; set; }
 		ISet<ISetupStep> SetupSteps { get; set; }
+		IPackageConfiguration PackageConfiguration { get; set; }
 	}
 }
