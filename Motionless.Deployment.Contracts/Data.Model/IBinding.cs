@@ -1,4 +1,5 @@
-﻿using Motionless.Data.Persistence;
+﻿using System.Collections.Generic;
+using Motionless.Data.Persistence;
 
 namespace Motionless.Deployment.Contracts.Data.Model
 {
@@ -10,5 +11,7 @@ namespace Motionless.Deployment.Contracts.Data.Model
 		int Port { get; set; }
 		string Hostname { get; set; }
 		string SslThumbPrint { get; set; }
+		ISet<IEnvironment> Environments { get; set; }
+		ISet<IServer> Servers { get; set; }
 	}
 }

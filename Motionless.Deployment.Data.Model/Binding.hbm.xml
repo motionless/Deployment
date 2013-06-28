@@ -15,5 +15,32 @@
 		<property name="UpdatedAt">
 			<column name="UpdatedAt" sql-type="datetime" not-null="true" />
 		</property>
+		<property name="Protocol">
+			<column name="Protocol" not-null="true" />
+		</property>
+		<property name="IPAddress">
+			<column name="IPAddress" not-null="false" />
+		</property>
+		<property name="Port">
+			<column name="Port" not-null="true" />
+		</property>
+		<property name="Hostname">
+			<column name="Hostname" not-null="false" />
+		</property>
+		<property name="SslThumbPrint">
+			<column name="SslThumbPrint" not-null="false" />
+		</property>
+		<many-to-one name="Website" class="Website">
+			<column name="ID_Website" sql-type="bigint" not-null="true"/>
+		</many-to-one>
+
+		<set name="Servers" table="BindingsServers" inverse="false" lazy="true">
+			<key column="Id_Binding"/>
+			<many-to-many class="Server" column="Id_Server" />
+		</set>
+		<set name="Environments" table="BindingsEnvironments" inverse="false" lazy="true">
+			<key column="Id_Binding"/>
+			<many-to-many class="Environment" column="Id_Environment" />
+		</set>
 	</class>
 </hibernate-mapping>

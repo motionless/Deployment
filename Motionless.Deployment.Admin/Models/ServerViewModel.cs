@@ -32,7 +32,7 @@ namespace Motionless.Deployment.Admin.Models
 				return new MultiSelectList(listItems,
 										"Value",
 										"Text",
-										Environments != null ? Environments.Select(env => env.Id): null);
+										Environments != null ? Environments.Select(env => env.Id) : null);
 			}
 		}
 

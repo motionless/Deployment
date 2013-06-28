@@ -59,7 +59,9 @@
     <None Include="ModelDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationPool.hbm.xml" />
+    <EmbeddedResource Include="ApplicationPool.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Binding.hbm.xml" />
     <EmbeddedResource Include="Configuration.hbm.xml" />
     <EmbeddedResource Include="Environment.hbm.xml">

@@ -35,6 +35,11 @@
 			<mvcSiteMapNode title="Create Website" action="Create" />
 			<mvcSiteMapNode title="Edit Website" action="Edit" />
 		</mvcSiteMapNode>
+		<mvcSiteMapNode title="Binding" controller="Binding">
+			<mvcSiteMapNode title="List Bindings" action="Index" />
+			<mvcSiteMapNode title="Create Binding" action="Create" />
+			<mvcSiteMapNode title="Edit Binding" action="Edit" />
+		</mvcSiteMapNode>
 		<mvcSiteMapNode title="About" controller="Home" action="About"/>
 	</mvcSiteMapNode>
 </mvcSiteMap>

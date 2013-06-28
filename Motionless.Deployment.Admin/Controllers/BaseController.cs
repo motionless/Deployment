@@ -38,5 +38,8 @@ namespace Motionless.Deployment.Admin.Controllers
 
 		[Import(typeof(IApplicationPoolService))]
 		public IApplicationPoolService ApplicationPoolService { get; set; }
+
+		[Import(typeof(IBindingService))]
+		public IBindingService BindingService { get; set; }
     }
 }

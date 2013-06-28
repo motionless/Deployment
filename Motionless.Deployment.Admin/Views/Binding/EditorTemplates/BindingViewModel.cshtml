@@ -1,0 +1,115 @@
+﻿@using Motionless.Deployment.Contracts.Enums
+@using Motionless.Deployment.Data.Model
+@model Motionless.Deployment.Admin.Models.BindingViewModel
+<fieldset>
+	<legend>Binding</legend>
+	@if(!ViewData.ModelState.IsValid){@Html.ValidationSummary(string.Join(",",ViewData.ModelState.Keys.Where(k => !ViewData.ModelState.IsValidField(k)).Select(k=>k)),new {@class="alert alert-error"})}
+	
+	@Html.Partial("EditorTemplates/BaseObject", Model)
+	
+	<div class="control-group">
+		@Html.LabelFor(model => model.Hostname, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.Hostname)
+			@Html.ValidationMessageFor(model => model.Hostname)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.Protocol, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.Protocol)
+			@Html.ValidationMessageFor(model => model.Protocol)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.Port, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.Port)
+			@Html.ValidationMessageFor(model => model.Port)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.IPAddress, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.IPAddress)
+			@Html.ValidationMessageFor(model => model.IPAddress)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.SslThumbPrint, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.SslThumbPrint)
+			@Html.ValidationMessageFor(model => model.SslThumbPrint)
+		</div>
+	</div>
+	
+	<div class="control-group">
+		@Html.LabelFor(model => model.Servers, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.ListBoxFor(model => model.SelectedServerIds,Model.ServersSelectList)
+			@Html.ValidationMessageFor(model => model.Servers)
+		</div>
+	</div>
+	
+	<div class="control-group">
+		@Html.LabelFor(model => model.Environments, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.ListBoxFor(model => model.SelectedEnvironmentIds, Model.EnvironmentsSelectList)
+			@Html.ValidationMessageFor(model => model.Environments)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.Website, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.DropDownListFor(model => model.SelectedWebsiteId, Model.WebsitesSelectList )
+			@Html.ValidationMessageFor(model => model.Website)
+		</div>
+	</div>
+	@*<div class="control-group">
+		@Html.LabelFor(model => model.CreatedAt, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.CreatedAt)
+			@Html.ValidationMessageFor(model => model.CreatedAt)
+		</div>
+	</div>
+	<div class="control-group">
+		@Html.LabelFor(model => model.UpdatedAt, new { @class = "control-label" })
+
+		<div class="controls">
+			@Html.EditorFor(model => model.UpdatedAt)
+			@Html.ValidationMessageFor(model => model.UpdatedAt)
+		</div>
+	</div>*@
+		@*@if (Model.Servers != null && Model.Servers.Any())
+ {
+		<h4>Servers</h4>
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th class="span1">Edit</th>
+			</tr>
+			@foreach (var server in Model.Servers)
+   {
+				<tr>
+					<td>@Html.DisplayFor(m => server.Name)</td>
+					<td class="span1">@Html.ActionLink("Edit", "Edit", "Server", new { Id = server.Id }, new { @class = "btn btn-small" })</td>
+				</tr>
+   }
+		</table>
+ }*@
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn">@Request.RequestContext.RouteData.Values["Action"]</button>
+		</div>
+	</div>
+
+</fieldset>

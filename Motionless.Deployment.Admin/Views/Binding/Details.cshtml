@@ -1,0 +1,15 @@
+﻿@model Motionless.Deployment.Data.Model.Environment
+
+@{
+	ViewBag.Title = "Details";
+}
+<fieldset>
+	@Html.LabelFor(m => m.Name)
+	@Html.TextBoxFor(m=>m.Name)
+	
+	@Html.LabelFor(m => m.CreatedAt)
+	@Html.TextBoxFor(m=>m.CreatedAt)
+	
+	@Html.LabelFor(m => m.UpdatedAt)
+	@Html.TextBoxFor(m=>m.UpdatedAt)
+</fieldset>

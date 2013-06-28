@@ -156,6 +156,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BindingController.cs" />
     <Compile Include="Controllers\PackageConfigurationController.cs" />
     <Compile Include="Controllers\WebsiteController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
@@ -171,6 +172,7 @@
     </Compile>
     <Compile Include="Models\ApplicationPoolViewModel.cs" />
     <Compile Include="Models\BindingViewModel.cs" />
+    <Compile Include="Models\BindingListViewModel.cs" />
     <Compile Include="Models\PackageConfigurationListViewModel.cs" />
     <Compile Include="Models\PackageConfigurationViewModel.cs" />
     <Compile Include="Models\WebsiteListViewModel.cs" />
@@ -270,6 +272,11 @@
     <Content Include="Views\shared\EditorTemplates\Version.cshtml" />
     <Content Include="Views\shared\EditorTemplates\BaseObject.cshtml" />
     <Content Include="Views\Website\EditorTemplates\ApplicationPoolViewModel.cshtml" />
+    <Content Include="Views\Binding\Create.cshtml" />
+    <Content Include="Views\Binding\Details.cshtml" />
+    <Content Include="Views\Binding\Edit.cshtml" />
+    <Content Include="Views\Binding\EditorTemplates\BindingViewModel.cshtml" />
+    <Content Include="Views\Binding\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -30,11 +30,12 @@
 			<column name="ID_ApplicationPool" sql-type="bigint" not-null="true"/>
 		</many-to-one>
 
-		<set name="Bindings" table="WebsiteBindings" inverse="true" lazy="true">
+		<set name="Bindings" inverse="true" lazy="true">
 			<key column="ID_Website"/>
 			<one-to-many class="Binding"/>
 		</set>
-		<set name="VirtualDirectories" table="WebsiteVirtualDirectories" inverse="true" lazy="true">
+		
+		<set name="VirtualDirectories" inverse="true" lazy="true">
 			<key column="ID_Website"/>
 			<one-to-many class="VirtualDirectory"/>
 		</set>
