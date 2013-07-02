@@ -51,6 +51,8 @@
     <Compile Include="Data.Model\IBinding.cs" />
     <Compile Include="Data.Model\IEnvironment.cs" />
     <Compile Include="Data.Model\IPackage.cs" />
+    <Compile Include="Data.Model\IParameter.cs" />
+    <Compile Include="Data.Model\IParametrizable.cs" />
     <Compile Include="Data.Model\IProduct.cs" />
     <Compile Include="Data.Model\IServer.cs" />
     <Compile Include="Data.Model\IServerRole.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="Data.Model\IVirtualDirectory.cs" />
     <Compile Include="Data.Model\IWebsite.cs" />
     <Compile Include="Data.Model\IPackageConfiguration.cs" />
+    <Compile Include="Enums\BusinessObjectType.cs" />
     <Compile Include="Enums\Stage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IApplicationPoolService.cs" />

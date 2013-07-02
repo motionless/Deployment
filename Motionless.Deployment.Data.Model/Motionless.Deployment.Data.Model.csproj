@@ -44,6 +44,7 @@
     <Compile Include="ApplicationPool.cs" />
     <Compile Include="Binding.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Parameter.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="Package.cs" />
     <Compile Include="PackageConfiguration.cs" />
@@ -62,7 +63,9 @@
     <EmbeddedResource Include="ApplicationPool.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Binding.hbm.xml" />
+    <EmbeddedResource Include="Binding.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Configuration.hbm.xml" />
     <EmbeddedResource Include="Environment.hbm.xml">
       <SubType>Designer</SubType>
@@ -100,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PackageConfiguration.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Parameter.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

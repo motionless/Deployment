@@ -51,6 +51,6 @@ namespace Motionless.Deployment.Admin.Models
 		
 		public ISet<IServer> Servers { get; set; }
 
-		
+		public ISet<IParameter> Parameters { get; set; }
 	}
 }

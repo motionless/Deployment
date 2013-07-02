@@ -4,7 +4,7 @@ using Motionless.Deployment.Contracts.Enums;
 
 namespace Motionless.Deployment.Contracts.Data.Model
 {
-	public interface IEnvironment : IBaseObject
+	public interface IEnvironment : IBaseObject, IParametrizable
 	{
 		string Name { get; set; }
 		Stage Stage { get; set; }
