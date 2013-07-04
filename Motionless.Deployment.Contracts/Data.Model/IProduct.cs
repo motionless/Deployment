@@ -3,7 +3,7 @@ using Motionless.Data.Persistence;
 
 namespace Motionless.Deployment.Contracts.Data.Model
 {
-	public interface IProduct : IBaseObject
+	public interface IProduct : IBaseObject, IParametrizable
 	{
 		string Name { get; set; }
 		ISet<IEnvironment> Environments { get; set; }

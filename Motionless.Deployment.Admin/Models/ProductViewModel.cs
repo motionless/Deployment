@@ -22,5 +22,6 @@ namespace Motionless.Deployment.Admin.Models
 		public ISet<IEnvironment> Environments { get; set; }
 		public ISet<IPackage> Packages { get; set; }
 		public ISet<IPackageConfiguration> PackageConfigurations { get; set; }
+		public ISet<IParameter> Parameters { get; set; }
 	}
 }

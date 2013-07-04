@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,9 +62,14 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GenericModelTest.cs" />
+    <Compile Include="ParameterModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Motionless.Deployment.Contracts\Motionless.Deployment.Contracts.csproj">
+      <Project>{B3A65837-967D-4876-9F94-6B47DDEB6EC8}</Project>
+      <Name>Motionless.Deployment.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Motionless.Deployment.Data.Model\Motionless.Deployment.Data.Model.csproj">
       <Project>{1be96e16-6f42-4c47-9c27-39b9b57e43e8}</Project>
       <Name>Motionless.Deployment.Data.Model</Name>
