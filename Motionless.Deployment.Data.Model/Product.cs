@@ -17,6 +17,6 @@ namespace Motionless.Deployment.Data.Model
 		public virtual ISet<IPackage> Packages { get; set; }
 		public virtual ISet<IPackageConfiguration> PackageConfigurations { get; set; }
 		
-		public ISet<IParameter> Parameters { get; set; }
+		public virtual ISet<IParameter> Parameters { get; set; }
 	}
 }
