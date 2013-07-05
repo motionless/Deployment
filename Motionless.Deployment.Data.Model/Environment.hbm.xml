@@ -26,8 +26,8 @@
 			<key column="Id_Environment"/>
 			<many-to-many class="Server" column="Id_Server" />
 		</set>
-		<set name="Parameters" table="Parameter" where="ID_BusinessObjectType=4">
-			<key column="ObjectId"/>
+		<set name="Parameters" table="Parameter" where="ID_BusinessObjectType=4" inverse="true" >
+			<key column="ObjectId" foreign-key="none" />
 			<one-to-many class="Parameter"/>
 		</set>
 	</class>

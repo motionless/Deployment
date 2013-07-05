@@ -19,7 +19,11 @@ namespace Motionless.Deployment.Data.Model.Test
 			PersistenceHelper.UpdateDatabaseSchema();
 		}
 
-
+		[TestMethod]
+		public void InitializeDatabase()
+		{
+			
+		}
 
 
 		[TestMethod]

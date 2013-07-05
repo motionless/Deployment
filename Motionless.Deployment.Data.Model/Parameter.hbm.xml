@@ -25,7 +25,7 @@
 			<meta-value class="Environment" value="4"/>
 			<meta-value class="Product" value="6"/>
 			<meta-value class="Server" value="7"/>
-			<column name="ID_BusinessObjectType"/>
+			<column name="ID_BusinessObjectType" />
 			<column name="ObjectId" />
 		</any>
 	</class>

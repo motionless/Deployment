@@ -28,5 +28,9 @@
 			<key column="ID_Product"/>
 			<one-to-many class="PackageConfiguration"/>
 		</set>
+		<set name="Parameters" table="Parameter" where="ID_BusinessObjectType=6" inverse="true">
+			<key column="ObjectId" foreign-key="none"/>
+			<one-to-many class="Parameter"/>
+		</set>
 	</class>
 </hibernate-mapping>
