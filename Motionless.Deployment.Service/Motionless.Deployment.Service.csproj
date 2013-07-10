@@ -49,6 +49,7 @@
     <Compile Include="DeploymentService.Designer.cs">
       <DependentUpon>DeploymentService.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeploymentWorker.cs" />
     <Compile Include="PackageDiscoverService.cs">
       <SubType>Component</SubType>
     </Compile>
